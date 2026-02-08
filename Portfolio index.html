@@ -793,72 +793,12 @@
   <div class="w-embed">
     <div id="hero" class="grain-overlay"></div>
     <style>
-      #hero {
+      .grain-overlay {
         pointer-events: none;
-        position: fixed;
+        position: fixed !Important;
         z-index: 1000;
         width: 100vw;
         height: 100vh;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-      }
-
-      #hero::before {
-        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU5NDdERjU2MzYxODExRTJBQTA5RkNCQzhBNkNDNjBBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU5NDdERjU3MzYxODExRTJBQTA5RkNCQzhBNkNDNjBBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTk0N0RGNTQzNjE4MTFFMkFBMDlGQ0JDOEE2Q0M2MEEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTk0N0RGNTUzNjE4MTFFMkFBMDlGQ0JDOEE2Q0M2MEEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7Cd+cLAAAABlBMVEUBAQEBAQF+lrXHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEuklEQVR42uzd6XaDMAwF0IT3f+kup9kYHMuSMR3u/dMT0gGksVTgk88++uij/wLd/89r/aPPmj5gufzPvvnoYX/wY+8/f+mnPnr8V9/4/ed+6rt+5PfPX/qp5+j+5ed8+F0f+sU3Xn3eh/7Pz7z/W9/+8ld+79v/9uM/9C3f/etnn3/kHz/+L5/+kd/+93+wVdH/+qfP/u3Hv/pXn3/it/3sM7/tT3/5tD/9zft/9O1v/tM/+r0v//MfPv70P/3mN//03//p77/+/r/84e9//bdf/vDXv/3VD//+V7//68///Bf//s8//Rt/+f3f+Pq3v/Xff/vz3/+V7//Vt3//13//z3////v2f//tv//D///w////LVv+/9+x/f93/O/P/vYP/+cf/vnf/vFf//WP/vYP/vm/f//Hf/vHP/3ZH/7xH//1n/7+T//xn/7xv/7bv/7b//////1///v/////AAD//7L/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbPny4v+S/++hf/v3f/y3//un//Y//9c////9+6//9b/+6//97//yz//yn//5H//1v//v////v//7//1v//t//5f/+a//+f/+q//9b//6v/+t//93//93//5////v//x//7P//O//vX/+t//9t/+/t/+53/+x//4n//tf//u//+u//+r//+p//9p//8l//8j//7j//6i//5h//7f//5f//4f//3e//1e//0d//zd//yb//wZ//v///r//9q//8p//7o//7l//5k//4k//3k//2j//1h//xh//wf//vf//uf//td//rc//qb//pb//oZ//n///m//9m//8l//7k//6j//5i//4h//3h//2g//1f//0f//0e//zd//yb//xa//w///v//8v//7u//6t//5s//4r//3r//2r//1p//0p//zo//yn//xl//wl//vk//uj//ti//sh//rf//qe//pe//od//nc//mb//la//ka//j///i//8i//7h//6h//5g//4f//3f//2e//1d//0d//zc//yb//xZ//w///v//7v//6u//5t//4s//3r//2q//1p//0o//zn//ym//xm//wl//vk//uk//tj//si//rh//qg//pf//oe//nd//mc//lb//ka//jZ//i///h//7h//6g//5f//4e//3e//2d//1c//0b//zZ//y///w//+w//9v//8u//7t//6s//5r//4q//3p//2o//1n//0m//zl//yk//xj//wi//vh//ug//tf//se//rd//qc//pb//oa//nZ//mY//l///k//+k//9j//8i//7h//6g//5f//4e//3d//2c//1b//0Z//z///y//9y//8x//7w//6v//5u//4t//3s//2r//1q//0p//zo//yn//xm//wl//vk//uj//th//sg//rf//qe//pd//oc//nb//mZ//l///k//9k//8j//7h//6g//5f//4e//3d//2c//1b//0Z//z///xzrP7AQffOGcGlvPS/tW734dy1Iv4tB/81X6I9rvMeXPny4kWt956a+kj94G7wrfb/fzWW2/1u0=Yt9Ize1ue+P86/+0K/6QU9Tn9ztt9++23vN3crLH3v++Y74L7/+OOPe+/pL+cUH3oZelHdnM1PP=/203xliuTNorQ/Z44WvWM6Cc0VT/UI/cdmoo7rqGTZ08C3CyZ2JY3pRf8DUM2r0+uuvl35zd+sX+juv7gRcnXFnRg60ZqPXnVO1hMXefeys0Mk9r8f+BwAA//++15tMAAAABklEQVQDAP2Bk9NnL44UAAAAAElFTkSuQmCC");
-        position: absolute;
-        content: "";
-        height: 300%;
-        width: 300%;
-        left: -100%;
-        top: -100%;
-        animation: grained 0.5s steps(20) infinite;
-      }
-
-      @keyframes grained {
-        0% {
-          transform: translate(-10%, 10%);
-        }
-
-        10% {
-          transform: translate(-25%, 0%);
-        }
-
-        20% {
-          transform: translate(-30%, 10%);
-        }
-
-        30% {
-          transform: translate(-30%, 30%);
-        }
-
-        40% {
-          transform: translate(-10%, 20%);
-        }
-
-        50% {
-          transform: translate(0%, 30%);
-        }
-
-        60% {
-          transform: translate(-20%, 20%);
-        }
-
-        70% {
-          transform: translate(10%, 10%);
-        }
-
-        80% {
-          transform: translate(-25%, 5%);
-        }
-
-        90% {
-          transform: translate(-30%, 25%);
-        }
-
-        100% {
-          transform: translate(-10%, 10%);
-        }
       }
     </style>
   </div>
@@ -983,7 +923,7 @@
               data-i18n="about_passion_2">insights for business
               decisions. <br /></span></a><span class="span"> </span><a href="#" class="text-span"><span class="span"
               data-i18n="about_specialization">Specialized in Business Intelligence & Analytics</span></a><br /></h5>
-      </div>
+      </div>«îîîîîîîîîîîîîîîîîî
     </div>
     <div id="skills" class="section flex">
       <div class="wrapper flex"></div>
@@ -1278,113 +1218,19 @@
   <script
     src="https://cdn.prod.website-files.com/600be19268d1cb46eb5169bf/js/webflow.e34f84b99bfc9a211b7f79a8633e7240.js"
     type="text/javascript"></script>
-  <style>
-    #hero::before {
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU5NDdERjU2MzYxODExRTJBQTA5RkNCQzhBNkNDNjBBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU5NDdERjU3MzYxODExRTJBQTA5RkNCQzhBNkNDNjBBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTk0N0RGNTQzNjE4MTFFMkFBMDlGQ0JDOEE2Q0M2MEEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTk0N0RGNTUzNjE4MTFFMkFBMDlGQ0JDOEE2Q0M2MEEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7Cd+cLAAAABlBMVEUBAQEBAQF+lrXHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEuklEQVR42uzd6XaDMAwF0IT3f+kup9kYHMuSMR3u/dMT0gGksVTgk88++uij/wLd/89r/aPPmj5gufzPvvnoYX/wY+8/f+mnPnr8V9/4/ed+6rt+5PfPX/qp5+j+5ed8+F0f+sU3Xn3eh/7Pz7z/W9/+8ld+79v/9uM/9C3f/etnn3/kHz/+L5/+kd/+93+wVdH/+qfP/u3Hv/pXn3/it/3sM7/tT3/5tD/9zft/9O1v/tM/+r0v//MfPv70P/3mN//03//p77/+/r/84e9//bdf/vDXv/3VD//+V7//68///Ff//s8//Rt/+f3f+Pq3v/Xff/vz3/+V7//Vt3//13//z3////v2f//tv//Dv//D///w////LVv+/9+x/f93/O/P/vYP/+cf/vnf/vFf//WP/vYP/vm/f//Hf/vHP/3ZH/7xH//1n/7+T//xn/7xv/7bv/7b//////1///v/////AAD//7L/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbPny4v+S/++hf/v3f/y3//un//Y//9c////9+6//9b/+6//97//yz//yn//5H//1v//v////v//7//1v//t//5f/+a//+f/+q//9b//6v/+t//93//93//5////v//x//7P//O//vX/+t//9t/+/t/+53/+x//4n//tf//u//+u//+r//+p//9p//8l//8j//7j//6i//5h//7f//5f//4f//3e//1e//0d//zd//yb//wZ//v///r//9q//8p//7o//7l//5k//4k//3k//2j//1h//xh//wf//vf//uf//td//rc//qb//pb//oZ//n///m//9m//8l//7k//6j//5i//4h//3h//2g//1f//0f//0e//zd//yb//xa//w///v//8v//7u//6t//5s//4r//3r//2r//1p//0p//zo//yn//xl//wl//vk//uj//ti//sh//rf//qe//pe//od//nc//mb//la//ka//j///i//8i//7h//6h//5g//4f//3f//2e//1d//0d//zc//yb//xZ//w///v//7v//6u//5t//4s//3r//2q//1p//0o//zn//ym//xm//wl//vk//uk//tj//si//rh//qg//pf//oe//nd//mc//lb//ka//jZ//i///h//7h//6g//5f//4e//3e//2d//1c//0b//zZ//y///w//+w//9v//8u//7t//6s//5r//4q//3p//2o//1n//0m//zl//yk//xj//wi//vh//ug//tf//se//rd//qc//pb//oa//nZ//mY//l///k//+k//9j//8i//7h//6g//5f//4e//3d//2c//1b//0Z//z///y//9y//8x//7w//6v//5u//4t//3s//2r//1q//0p//zo//yn//xm//wl//vk//uj//th//sg//rf//qe//pd//oc//nb//mZ//l///k//9k//8j//7h//6g//5f//4e//3d//2c//1b//0Z//z///xzrP7AQffOGcGlvPS/tW734dy1Iv4tB/81X6I9rvMeXPny4kWt956a+kj94G7wrfb/fzWW2/1u0=Yt9Ize1ue+P86/+0K/6QU9Tn9ztt9++23vN3crLH3v++Y74L7/+OOPe+/pL+cUH3oZelHdnM1PP=/203xliuTNorQ/Z44WvWM6Cc0VT/UI/cdmoo7rqGTZ08C3CyZ2JY3pRf8DUM2r0+uuvl35zd+sX+juv7gRcnXFnRg60ZqPXnVO1hMXefeys0Mk9r8f+BwAA//++15tMAAAABklEQVQDAP2Bk9NnL44UAAAAAElFTkSuQmCC");
-      position: absolute;
-      content: "";
-      height: 300%;
-      width: 300%;
-      left: -100%;
-      top: -100%;
-      animation-name: grained;
-      animation-iteration-count: infinite;
-      animation-duration: 0.5s;
-      animation-timing-function: steps(20);
+  <script src="https://cdn.rawgit.com/sarathsaleem/grained/master/grained.js"></script>
+  <script>
+    var options = {
+      "animate": true,
+      "patternWidth": 600,
+      "patternHeight": 600,
+      "grainOpacity": 0.15,
+      "grainDensity": 1,
+      "grainWidth": 0.7,
+      "grainHeight": 0.7,
     }
-
-    @-webkit-keyframes grained {
-      0% {
-        transform: translate(-10%, 10%);
-      }
-
-      10% {
-        transform: translate(-25%, 0%);
-      }
-
-      20% {
-        transform: translate(-30%, 10%);
-      }
-
-      30% {
-        transform: translate(-30%, 30%);
-      }
-
-      40% {
-        transform: translate(-10%, 20%);
-      }
-
-      50% {
-        transform: translate(0%, 30%);
-      }
-
-      60% {
-        transform: translate(-20%, 20%);
-      }
-
-      70% {
-        transform: translate(10%, 10%);
-      }
-
-      80% {
-        transform: translate(-25%, 5%);
-      }
-
-      90% {
-        transform: translate(-30%, 25%);
-      }
-
-      100% {
-        transform: translate(-10%, 10%);
-      }
-    }
-
-    @keyframes grained {
-      0% {
-        transform: translate(-10%, 10%);
-      }
-
-      10% {
-        transform: translate(-25%, 0%);
-      }
-
-      20% {
-        transform: translate(-30%, 10%);
-      }
-
-      30% {
-        transform: translate(-30%, 30%);
-      }
-
-      40% {
-        transform: translate(-10%, 20%);
-      }
-
-      50% {
-        transform: translate(0%, 30%);
-      }
-
-      60% {
-        transform: translate(-20%, 20%);
-      }
-
-      70% {
-        transform: translate(10%, 10%);
-      }
-
-      80% {
-        transform: translate(-25%, 5%);
-      }
-
-      90% {
-        transform: translate(-30%, 25%);
-      }
-
-      100% {
-        transform: translate(-10%, 10%);
-      }
-    }
-  </style>
+    grained("#hero", options);
+  </script>
 
 
   <script>
