@@ -3962,14 +3962,16 @@ strong {
   height: 1px;
 }
 
-.fade-up {
+.fade-up,
+.fade-up1 {
   flex: none;
   padding-left: 0;
   padding-right: 2vw;
   overflow: hidden;
 }
 
-.fade-up.tricks {
+.fade-up.tricks,
+.fade-up1.tricks {
   display: inline-block;
 }
 
@@ -4001,11 +4003,11 @@ strong {
 
 ._37-5vw-text-wrap {
   min-width: 37.5vw;
-  max-width: 37.5px;
 }
 
 .fade-up2.tricks {
   flex: none;
+  display: block;
   margin-bottom: 8px;
   overflow: hidden;
 }
@@ -4015,8 +4017,8 @@ strong {
 }
 
 .fade-up3.tricks {
-  letter-spacing: -.5vw;
-  line-height: 1em;
+  flex: none;
+  display: inline-block;
   overflow: hidden;
 }
 
@@ -6660,8 +6662,17 @@ strong {
   }
 }
 
+
 .bg-image-wrapper.nutrisight {
   background-image: url('images/nutrisight-hero.jpg');
+}
+
+.bg-image-wrapper.candigo {
+  background-image: url('images/candigo-thumb-large.jpg');
+}
+
+.bg-image-wrapper.seriesflix {
+  background-image: url('images/seriesflix-hero.jpg');
 }
 
 /* Background image parallax effect */
@@ -6685,15 +6696,17 @@ strong {
 .list-wrapper.project {
   z-index: 10;
   position: relative;
-  width: 100%;
-  padding: 5vh 5vw;
+  width: 90vw;
+  margin-left: -8vw;
+  margin-bottom: -2vh;
+  padding: 0;
 }
 
 .project-name-wrap {
   display: flex;
   justify-content: space-between;
   gap: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .div-4,
@@ -6704,7 +6717,7 @@ strong {
 
 .hero-text {
   font-size: 0.875rem;
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 0.05em;
   opacity: 0.7;
   margin-bottom: 0.5rem;

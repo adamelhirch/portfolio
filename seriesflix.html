@@ -155,6 +155,18 @@
       position: fixed;
       opacity: 0;
     }
+
+    #w-node-basic-img {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      width: 75%;
+      margin: 0 auto;
+      border-radius: 4px;
+    }
+
+    .w-webflow-badge {
+      display: none !important;
+    }
   </style>
   <style type=" text/css">
     .fade-up4 {
@@ -178,7 +190,7 @@
         height: 300%;
         top: -100%;
         left: -100%;
-        opacity: 0.04;
+        opacity: 0.12;
         animation: grain-anim 0.5s steps(6) infinite;
       }
 
@@ -311,8 +323,9 @@
           <h4 class="fade-up tricks">TV Series Search</h4>
           <h4 class="fade-up tricks">& Recommendation</h4>
         </div>
-        <div id="heading-container2" class="wrap project">
-          <div class="text-block project">SeriesFlix is a full-stack search and recommendation engine for TV series,
+        <div id="heading-container-desc" class="wrap project">
+          <div class="text-block project">SeriesFlix is a full-stack search and recommendation engine
+            for TV series,
             leveraging Natural Language Processing (NLP) to analyze over 15,000 subtitles. Built with Flask, React, and
             PostgreSQL, it features a BM25 ranking algorithm and a content-based filtering system for personalized
             recommendations.</div>
@@ -326,7 +339,7 @@
     <div class="section project">
       <div class="wrapper flex projects _2">
         <div id="heading-container3" class="wrap h4">
-          <h4 class="fade-up tricks">The Challenge</h4>
+          <h4 class="fade-up3 tricks">The Challenge</h4>
         </div>
         <div class="wrap project">
           <div class="text-block project">The main challenge was handling and indexing massive amounts of unstructured
@@ -337,8 +350,8 @@
     </div>
     <div class="section project">
       <div class="wrapper flex projects _2">
-        <div id="heading-container4" class="wrap h4">
-          <h4 class="fade-up tricks">Key Features</h4>
+        <div id="heading-container5" class="wrap h4">
+          <h4 class="fade-up5 tricks">Key Features</h4>
         </div>
         <div class="wrap project">
           <ul class="text-block project">
@@ -351,25 +364,16 @@
         </div>
       </div>
     </div>
-    <div data-w-id="Section 2" class="section next">
+    <div data-w-id="Section 2" class="section next" id="next-section"
+      style="cursor: none; position: relative; z-index: 20;">
       <div class="list-wrapper next-project">
         <div class="btm-line"></div>
       </div>
-      <div id="app" class="app"></div>
-      <main class="main-copy">
-        <h2 id="heading-container5" class="fade-up4 tricks">next<br></h2>
-        <div id="itemsWrapper" class="grid project"><a href="nutrisight.html"
-            class="grid-item item-1-copy w-inline-block">
-            <div class="thumb-img__small project w-embed"><img class="grid__item-img"
-                src="images/nutrisight-thumb-small.jpg"></div>
-            <div class="thumb-img__large project w-embed"><img class="grid__item-img grid__item-img--large"
-                src="images/nutrisight-thumb-large.jpg"></div>
-          </a></div>
-        <div id="fullview" class="fullview">
-          <div class="fullview__item w-clearfix">
-            <h2 class="fullview__item-title">NutriSight</h2><a href="nutrisight.html" class="link">View Project</a>
-          </div><a href="#" class="fullview__close w-button">CLOSE</a>
-        </div>
+      <!-- Thumbnail that follows cursor -->
+      <img id="next-thumb" src="images/nutrisight-thumb-large.jpg" alt="NutriSight"
+        style="position: absolute; width: 50vw; max-width: 800px; height: auto; pointer-events: none; opacity: 0; z-index: 0; transition: opacity 0.3s ease; border-radius: 4px; transform: translate(-50%, -50%);">
+      <main class="main-copy" style="position: relative; z-index: 1;">
+        <h2 id="heading-container4" class="fade-up4 tricks" style="position: relative; z-index: 2;">next<br></h2>
       </main>
     </div>
     <div id="contact" class="section footer">
@@ -489,258 +493,63 @@
 
     }
 
-    var slideIn = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    slideIn
-      .add({
-        targets: '.slide-in .letter',
-        opacity: [0, 1],
-        easing: "easeInOutQuad",
-        duration: 2250,
-        delay: (el, i) => 150 * (i + 1)
-      }).add({
-        targets: '.slide-in',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-      });
-
-
-    // Slide Up Animation
-    var slideUp = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    slideUp
-      .add({
-        targets: '.slide-up .letter',
-        translateY: ["1.1em", 0],
-        opacity: [0, 1],
-        translateZ: 0,
-        duration: 750,
-        delay: (el, i) => 50 * i
-      }).add({
-        targets: '.slide-up',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-      });
-
-
-    // Fade Up Animation
-    var fadeUp = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    fadeUp
-      .add({
-        targets: '.fade-up .letter',
-        translateY: [200, 0],
+    // Helper to create a fade-up animation timeline
+    function createFadeUp(selector, translateY) {
+      var tl = anime.timeline({ loop: false, autoplay: false });
+      tl.add({
+        targets: selector + " .letter",
+        translateY: [translateY || 100, 0],
         translateZ: 0,
         opacity: [0, 1],
         easing: "easeOutExpo",
-        duration: 1400,
-        delay: (el, i) => 300 + 30 * i
+        duration: translateY > 100 ? 1400 : 800,
+        delay: (el, i) => 300 + 30 * i,
       }).add({
-        targets: '.fade-upw .letter',
+        targets: ".fade-upw .letter",
         translateY: [0, -100],
         opacity: [1, 0],
         easing: "easeInExpo",
         duration: 1200,
-        delay: (el, i) => 100 + 30 * i
+        delay: (el, i) => 100 + 30 * i,
       });
+      return tl;
+    }
 
-    // Fade Up2 Animation
-    var fadeUp2 = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
+    // Create all animations
+    var fadeUp = createFadeUp(".fade-up", 200); // Title
+    var fadeUp2 = createFadeUp(".fade-up2", 200); // Description
+    var fadeUp3 = createFadeUp(".fade-up3", 100); // The Challenge
+    var fadeUp5 = createFadeUp(".fade-up5", 100); // Key Features
+    var fadeUp4 = createFadeUp(".fade-up4", 100); // Next section
 
-    fadeUp2
-      .add({
-        targets: '.fade-up2 .letter',
-        translateY: [100, 0],
-        translateZ: 0,
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        duration: 800,
-        delay: (el, i) => 300 + 30 * i
-      }).add({
-        targets: '.fade-upw .letter',
-        translateY: [0, -100],
-        opacity: [1, 0],
-        easing: "easeInExpo",
-        duration: 1200,
-        delay: (el, i) => 100 + 30 * i
-      });
-
-    // Fade Up3 Animation
-    var fadeUp3 = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    fadeUp3
-      .add({
-        targets: '.fade-up3 .letter',
-        translateY: [100, 0],
-        translateZ: 0,
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        duration: 800,
-        delay: (el, i) => 300 + 30 * i
-      }).add({
-        targets: '.fade-upw .letter',
-        translateY: [0, -100],
-        opacity: [1, 0],
-        easing: "easeInExpo",
-        duration: 1200,
-        delay: (el, i) => 100 + 30 * i
-      });
-
-    // Fade Up4 Animation
-    var fadeUp4 = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    fadeUp4
-      .add({
-        targets: '.fade-up4 .letter',
-        translateY: [100, 0],
-        translateZ: 0,
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        duration: 800,
-        delay: (el, i) => 300 + 30 * i
-      }).add({
-        targets: '.fade-upw .letter',
-        translateY: [0, -100],
-        opacity: [1, 0],
-        easing: "easeInExpo",
-        duration: 1200,
-        delay: (el, i) => 100 + 30 * i
-      });
-
-
-    // Rotate In Animation
-    var rotateIn = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    rotateIn
-      .add({
-        targets: '.rotate-in .letter',
-        translateY: ["1.1em", 0],
-        translateX: ["0.55em", 0],
-        translateZ: 0,
-        rotateZ: [180, 0],
-        duration: 750,
-        easing: "easeOutExpo",
-        delay: (el, i) => 50 * i
-      }).add({
-        targets: '.rotate-in',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-      });
-
-
-    // Pop In Animation
-    var popIn = anime.timeline({
-      loop: false,
-      autoplay: false,
-    });
-
-    popIn
-      .add({
-        targets: '.pop-in .letter',
-        scale: [0, 1],
-        duration: 1500,
-        elasticity: 600,
-        delay: (el, i) => 45 * (i + 1)
-      }).add({
-        targets: '.pop-in',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-      });
-
-
-    // Play your animation with these
-
-    slideUp.play();
-    slideIn.play();
-    rotateIn.play();
-    popIn.play();
-
-    // Wait before playing animation
-    setTimeout(() => {
-      // Put the play below this line
-    }, 800);
-
-    // Play animaton when something is clicked
-    $(".your-button-class").click(function () {
-      // Put the play below this line
-    });
-
-    // Play animaton when hovered in
-    $(".your-button-class").mouseenter(function () {
-      // Put the play below this line
-    });
-
-    // Play animation when scrolled into view
-    $('#heading-container').on('inview', function (event, isInView) {
+    // Play animations when scrolled into view
+    $("#heading-container").on("inview", function (event, isInView) {
       if (isInView) {
-        // Put the play below this line
         fadeUp.play();
-      } else {
       }
     });
 
-    // Play animation when scrolled into view
-    $('#heading-container2').on('inview', function (event, isInView) {
+    $("#heading-container-desc").on("inview", function (event, isInView) {
       if (isInView) {
-        // Put the play below this line
         fadeUp2.play();
-      } else {
       }
     });
 
-    // Play animation when scrolled into view
-    $('#heading-container3').on('inview', function (event, isInView) {
+    $("#heading-container3").on("inview", function (event, isInView) {
       if (isInView) {
-        // Put the play below this line
         fadeUp3.play();
-      } else {
       }
     });
 
-    // Play animation when scrolled into view
-    $('#heading-container4').on('inview', function (event, isInView) {
+    $("#heading-container5").on("inview", function (event, isInView) {
       if (isInView) {
-        // Put the play below this line
-        fadeUp4.play();
-      } else {
+        fadeUp5.play();
       }
     });
 
-    // Play animation when scrolled into view
-    $('#heading-container5').on('inview', function (event, isInView) {
+    $("#heading-container4").on("inview", function (event, isInView) {
       if (isInView) {
-        // Put the play below this line
         fadeUp4.play();
-      } else {
       }
     });
 
@@ -748,192 +557,53 @@
 
 
 
-  <script src="vendor/js/three-bundle.js"></script>
-  <script src="vendor/js/demo-core.js"></script>
-  <script src="vendor/js/demo.js"></script>
-
   <script>
-    let currentIndex;
-    const itemsWrapper = document.getElementById("itemsWrapper");
-    const thumbs = [...itemsWrapper.querySelectorAll("img.grid__item-img:not(.grid__item-img--large)")];
-    const fullviewItems = [...document.querySelectorAll(".fullview__item")];
-    const backToGridCtrl = document.querySelector(".fullview__close");
-    const transitionEffectDuration = 1.2;
-    const transitionEffect = createDemoEffect({
-      activation: { type: "mouse" },
-      timing: {
-        duration: transitionEffectDuration
-      },
-      transformation: {
-        type: "simplex",
-        props: {
-          seed: "8000",
-          frequencyX: 0.2,
-          frequencyY: 0.2,
-          amplitudeX: 0.3,
-          amplitudeY: 0.3
-        }
-      },
-      onToFullscreenStart: ({ index }) => {
-        currentIndex = index;
-        thumbs[currentIndex].style.opacity = 0;
-        transitionEffect.uniforms.uSeed.value = index * 10;
-        toggleFullview();
-      },
-      onToGridFinish: ({ index, lastIndex }) => {
-        thumbs[lastIndex].style.opacity = 1;
-        fullviewItems[currentIndex].classList.remove("fullview__item--current");
-      },
-      seed: 800,
-      easings: {
-        toFullscreen: Power1.easeOut,
-        toGrid: Power1.easeInOut
-      }
-    });
-    transitionEffect.init();
+    (function () {
+      var nextSection = document.getElementById('next-section');
+      var nextThumb = document.getElementById('next-thumb');
+      var customCursor = document.querySelector('.cursor');
 
-    const toggleFullview = () => {
-      if (transitionEffect.isFullscreen) {
-        TweenLite.to(fullviewItems[currentIndex].querySelector(".fullview__item-title"), 0.2, {
-          ease: Quad.easeOut,
-          opacity: 0,
-          x: "5%"
-        });
-        TweenLite.to(fullviewItems[currentIndex].querySelector(".link"), 0.2, {
-          ease: Quad.easeOut,
-          opacity: 0,
-          x: "5%"
-        });
-        TweenLite.to(backToGridCtrl, 0.2, {
-          ease: Quad.easeOut,
-          opacity: 0,
-          scale: 0
+      if (nextSection && nextThumb) {
+        nextSection.addEventListener('mousemove', function (e) {
+          var rect = nextSection.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+
+          // Move thumbnail
+          nextThumb.style.left = x + 'px';
+          nextThumb.style.top = y + 'px';
         });
 
-        transitionEffect.toGrid();
-      } else {
-        fullviewItems[currentIndex].classList.add("fullview__item--current");
-
-        TweenLite.to(fullviewItems[currentIndex].querySelector(".fullview__item-title"), 1, {
-          ease: Expo.easeOut,
-          startAt: { x: "5%" },
-          opacity: 1,
-          x: "0%",
-          delay: transitionEffectDuration * 0.6
-        });
-        TweenLite.to(fullviewItems[currentIndex].querySelector(".link"), 1, {
-          ease: Expo.easeOut,
-          startAt: { x: "5%" },
-          opacity: 1,
-          x: "0%",
-          delay: transitionEffectDuration * 0.9
-        });
-        TweenLite.to(backToGridCtrl, 1, {
-          ease: Expo.easeOut,
-          startAt: { scale: 0 },
-          opacity: 1,
-          scale: 1,
-          delay: transitionEffectDuration * 0.6
-        });
-      }
-    };
-
-    backToGridCtrl.addEventListener("click", () => {
-      if (transitionEffect.isAnimating) {
-        return;
-      }
-      toggleFullview();
-    });
-
-    imagesLoaded(document.querySelectorAll(".grid__item-img"), instance => {
-      document.body.classList.remove("loading");
-
-      let images = [];
-      for (var i = 0, imageSet = {}; i < instance.elements.length; i++) {
-        let image = {
-          element: instance.elements[i],
-          image: instance.images[i].isLoaded ? instance.images[i].img : null
-        };
-        if (i % 2 === 0) {
-          imageSet = {};
-          imageSet.small = image;
-        }
-
-        if (i % 2 === 1) {
-          imageSet.large = image;
-          images.push(imageSet);
-        }
-      }
-      transitionEffect.createTextures(images);
-    });
-  </script>
-
-  <script>
-    // Cursor follow logic for Next Project preview & Section Click
-    document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('itemsWrapper');
-      const sectionNext = document.querySelector('.section.next');
-      const originalContainer = wrapper ? wrapper.querySelector('.thumb-img__small') : null;
-      const targetLink = wrapper ? wrapper.querySelector('a') : null;
-
-      if (sectionNext && wrapper && originalContainer && targetLink) {
-        // Clone the element to create the floating cursor
-        const clone = originalContainer.cloneNode(true);
-        clone.classList.add('cursor-follower');
-        clone.style.position = 'fixed';
-        clone.style.top = '0';
-        clone.style.left = '0';
-        clone.style.zIndex = '50';
-        clone.style.pointerEvents = 'none';
-        clone.style.opacity = '0';
-        clone.style.transition = 'opacity 0.2s ease, transform 0.1s linear';
-        clone.style.width = originalContainer.offsetWidth + 'px';
-        document.body.appendChild(clone);
-
-        // Ensure content is clearly above the image
-        const mainCopy = document.querySelector('.main-copy');
-        if (mainCopy) {
-          mainCopy.style.position = 'relative';
-          mainCopy.style.zIndex = '100';
-          mainCopy.style.pointerEvents = 'none';
-        }
-
-        // Re-enable pointer events for the link
-        if (targetLink) {
-          targetLink.style.pointerEvents = 'auto';
-        }
-
-        // Hide original
-        originalContainer.style.transition = 'opacity 0.2s';
-        originalContainer.style.opacity = '0';
-
-        // Make section clickable
-        sectionNext.style.cursor = 'pointer';
-        sectionNext.addEventListener('click', (e) => {
-          if (!targetLink.contains(e.target) && e.target !== targetLink) {
-            targetLink.click();
+        nextSection.addEventListener('mouseenter', function () {
+          nextThumb.style.opacity = '1';
+          if (customCursor) {
+            customCursor.style.transform = 'scale(2.5)';
+            customCursor.style.border = 'none';
+            customCursor.style.backgroundColor = '#fff';
+            customCursor.style.mixBlendMode = 'difference';
           }
         });
 
-        // Mouse move handler on SECTION
-        const moveFollower = (e) => {
-          const w = clone.offsetWidth;
-          const h = clone.offsetHeight;
-          clone.style.transform = `translate(${e.clientX - w / 2}px, ${e.clientY - h / 2}px)`;
-          clone.style.opacity = '1';
-          originalContainer.style.opacity = '0';
-        };
-
-        sectionNext.addEventListener('mousemove', moveFollower);
-        sectionNext.addEventListener('mouseenter', () => {
-          clone.style.opacity = '1';
-          originalContainer.style.opacity = '0';
+        nextSection.addEventListener('mouseleave', function () {
+          nextThumb.style.opacity = '0';
+          if (customCursor) {
+            customCursor.style.transform = 'scale(1)';
+            customCursor.style.border = '1px solid #fff';
+            customCursor.style.backgroundColor = 'transparent';
+            customCursor.style.mixBlendMode = 'difference';
+          }
         });
-        sectionNext.addEventListener('mouseleave', () => {
-          clone.style.opacity = '0';
+
+        nextSection.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector('.page-wrapper').style.opacity = '0';
+          document.querySelector('.page-wrapper').style.transition = 'opacity 0.6s ease';
+          setTimeout(function () {
+            window.location.href = 'nutrisight.html';
+          }, 600);
         });
       }
-    });
+    })();
   </script>
 </body>
 
