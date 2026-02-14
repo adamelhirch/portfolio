@@ -217,8 +217,8 @@ class GridToFullscreenEffect {
     const transformation = isFunction(this.options.transformation.type)
       ? this.options.transformation.type(this.options.transformation.props)
       : transformations[this.options.transformation.type](
-          this.options.transformation.props
-        );
+        this.options.transformation.props
+      );
     const shaders = generateShaders(
       activations[this.options.activation.type],
       transformation
@@ -240,9 +240,11 @@ class GridToFullscreenEffect {
       });
     }
 
-    for (let i = 0; i < this.itemsWrapper.children.length; i++) {
-      const image = this.itemsWrapper.children[i].children[0];
-      image.addEventListener("mousedown", this.createOnMouseDown(i));
+    this.gridItems = Array.from(this.itemsWrapper.querySelectorAll(".grid-item"));
+
+    for (let i = 0; i < this.gridItems.length; i++) {
+      const item = this.gridItems[i];
+      item.addEventListener("mousedown", this.createOnMouseDown(i));
     }
   }
   /**
@@ -292,9 +294,18 @@ class GridToFullscreenEffect {
   recalculateUniforms(ev) {
     if (this.currentImageIndex === -1) return;
 
-    const rect = this.itemsWrapper.children[
-      this.currentImageIndex
-    ].children[0].getBoundingClientRect();
+    const items = this.gridItems && this.gridItems.length
+      ? this.gridItems
+      : this.itemsWrapper.children;
+    const currentItem = items[this.currentImageIndex];
+    if (!currentItem) return;
+    const rectSource =
+      currentItem.querySelector &&
+      currentItem.querySelector(".thumb-img__small")
+        ? currentItem.querySelector(".thumb-img__small")
+        : currentItem.children[0];
+    if (!rectSource) return;
+    const rect = rectSource.getBoundingClientRect();
     const mouseNormalized = {
       x: (ev.clientX - rect.left) / rect.width,
       // Allways invert Y coord
@@ -355,6 +366,47 @@ class GridToFullscreenEffect {
     this.currentImageIndex = itemIndex;
 
     this.recalculateUniforms(ev);
+
+    if (!this.textures[itemIndex]) {
+      const items = this.gridItems && this.gridItems.length
+        ? this.gridItems
+        : this.itemsWrapper.children;
+      const item = items[itemIndex];
+      if (item) {
+        const smallImage =
+          item.querySelector &&
+          item.querySelector("img.grid__item-img:not(.grid__item-img--large)")
+            ? item.querySelector("img.grid__item-img:not(.grid__item-img--large)")
+            : null;
+        const largeImage =
+          item.querySelector &&
+          item.querySelector("img.grid__item-img.grid__item-img--large")
+            ? item.querySelector("img.grid__item-img.grid__item-img--large")
+            : smallImage;
+
+        if (smallImage && largeImage && smallImage.naturalWidth && largeImage.naturalWidth) {
+          const makeTexture = image => {
+            const texture = new THREE.Texture(image);
+            texture.generateMipmaps = false;
+            texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+            texture.minFilter = THREE.LinearFilter;
+            texture.needsUpdate = true;
+            return texture;
+          };
+
+          this.textures[itemIndex] = {
+            small: {
+              element: smallImage,
+              texture: makeTexture(smallImage)
+            },
+            large: {
+              element: largeImage,
+              texture: makeTexture(largeImage)
+            }
+          };
+        }
+      }
+    }
 
     if (this.textures[itemIndex]) {
       const textureSet = this.textures[itemIndex];

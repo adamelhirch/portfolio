@@ -1637,6 +1637,7 @@
 
 
 
+  <script src="vendor/js/imagesloaded.pkgd.min.js"></script>
   <script src="vendor/js/three-bundle.js"></script>
   <script src="vendor/js/demo-core.js"></script>
   <script src="vendor/js/demo.js"></script>
@@ -1644,10 +1645,46 @@
   <script>
     let currentIndex;
     const itemsWrapper = document.getElementById("itemsWrapper");
+    const gridItems = [...itemsWrapper.querySelectorAll(".grid-item")];
     const thumbs = [...itemsWrapper.querySelectorAll("img.grid__item-img:not(.grid__item-img--large)")];
     const fullviewItems = [...document.querySelectorAll(".fullview__item")];
     const backToGridCtrl = document.querySelector(".fullview__close");
     const transitionEffectDuration = 1.2;
+    const createTextureFromImage = img => {
+      const texture = new THREE.Texture(img);
+      texture.generateMipmaps = false;
+      texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+      texture.minFilter = THREE.LinearFilter;
+      texture.needsUpdate = true;
+      return texture;
+    };
+    const ensureTextureForIndex = index => {
+      if (transitionEffect.textures[index]) {
+        return;
+      }
+
+      const item = gridItems[index];
+      if (!item) {
+        return;
+      }
+
+      const small = item.querySelector("img.grid__item-img:not(.grid__item-img--large)");
+      const large = item.querySelector("img.grid__item-img.grid__item-img--large");
+      if (!small || !large || !small.naturalWidth || !large.naturalWidth) {
+        return;
+      }
+
+      transitionEffect.textures[index] = {
+        small: {
+          element: small,
+          texture: createTextureFromImage(small)
+        },
+        large: {
+          element: large,
+          texture: createTextureFromImage(large)
+        }
+      };
+    };
     const transitionEffect = createDemoEffect({
       activation: { type: "mouse" },
       timing: {
@@ -1664,6 +1701,16 @@
         }
       },
       onToFullscreenStart: ({ index }) => {
+        ensureTextureForIndex(index);
+        if (transitionEffect.textures[index]) {
+          const textureSet = transitionEffect.textures[index];
+          transitionEffect.uniforms.uImage.value = textureSet.small.texture;
+          transitionEffect.uniforms.uImageRes.value.x = textureSet.small.texture.image.naturalWidth;
+          transitionEffect.uniforms.uImageRes.value.y = textureSet.small.texture.image.naturalHeight;
+          transitionEffect.uniforms.uImageLarge.value = textureSet.large.texture;
+          transitionEffect.uniforms.uImageLargeRes.value.x = textureSet.large.texture.image.naturalWidth;
+          transitionEffect.uniforms.uImageLargeRes.value.y = textureSet.large.texture.image.naturalHeight;
+        }
         currentIndex = index;
         thumbs[currentIndex].style.opacity = 0;
         transitionEffect.uniforms.uSeed.value = index * 10;
@@ -1734,27 +1781,37 @@
       toggleFullview();
     });
 
-    imagesLoaded(document.querySelectorAll(".grid__item-img"), instance => {
-      document.body.classList.remove("loading");
-
-      let images = [];
-      for (var i = 0, imageSet = {}; i < instance.elements.length; i++) {
-        let image = {
-          element: instance.elements[i],
-          image: instance.images[i].isLoaded ? instance.images[i].img : null
-        };
-        if (i % 2 === 0) {
-          imageSet = {};
-          imageSet.small = image;
+    const buildTextureSets = () => {
+      const textureSets = [];
+      gridItems.forEach(item => {
+        const small = item.querySelector("img.grid__item-img:not(.grid__item-img--large)");
+        const large = item.querySelector("img.grid__item-img.grid__item-img--large");
+        if (!small || !large || !small.complete || !large.complete || !small.naturalWidth || !large.naturalWidth) {
+          return;
         }
 
-        if (i % 2 === 1) {
-          imageSet.large = image;
-          images.push(imageSet);
-        }
+        textureSets.push({
+          small: { element: small, image: small },
+          large: { element: large, image: large }
+        });
+      });
+
+      return textureSets;
+    };
+
+    const applyTextures = () => {
+      const textureSets = buildTextureSets();
+      if (textureSets.length) {
+        transitionEffect.createTextures(textureSets);
       }
-      transitionEffect.createTextures(images);
-    });
+      document.body.classList.remove("loading");
+    };
+
+    if (typeof imagesLoaded === "function") {
+      imagesLoaded(itemsWrapper.querySelectorAll(".grid__item-img"), applyTextures);
+    } else {
+      window.addEventListener("load", applyTextures);
+    }
   </script>
 
 
