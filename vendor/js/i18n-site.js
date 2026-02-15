@@ -82,7 +82,9 @@
           { selector: "#fullview .fullview__item .link", text: "Voir le projet" },
           { selector: "#fullview .fullview__close", text: "FERMER" },
           { selector: '[data-i18n="footer_title"]', text: "entrons en<br />contact", html: true },
-          { selector: '[data-i18n="footer_email_label"]', text: "e-mail" }
+          { selector: '[data-i18n="footer_email_label"]', text: "e-mail" },
+          { selector: '[data-i18n="footer_github_label"]', text: "github" },
+          { selector: '[data-i18n="footer_linkedin_label"]', text: "linkedin" }
         ]
       },
       es: {
@@ -117,7 +119,9 @@
           { selector: "#fullview .fullview__item .link", text: "Ver proyecto" },
           { selector: "#fullview .fullview__close", text: "CERRAR" },
           { selector: '[data-i18n="footer_title"]', text: "pongámonos en<br />contacto", html: true },
-          { selector: '[data-i18n="footer_email_label"]', text: "correo" }
+          { selector: '[data-i18n="footer_email_label"]', text: "correo" },
+          { selector: '[data-i18n="footer_github_label"]', text: "github" },
+          { selector: '[data-i18n="footer_linkedin_label"]', text: "linkedin" }
         ]
       }
     },
@@ -375,6 +379,78 @@
         ]
       }
     },
+    "yelp-analytics.html": {
+      fr: {
+        meta: {
+          title: "Adam El Hirch | Yelp Data Analytics",
+          description:
+            "Yelp Data Analytics est un projet de data engineering et NLP sur le dataset Yelp Academic avec dashboards analytiques."
+        },
+        rules: [
+          { selector: ".nav-link._1 .overflow._1", text: "Projets" },
+          { selector: ".nav-link._2 .overflow._2", text: "À propos" },
+          { selector: ".nav-link._3 .overflow._3", text: "Contact" },
+          { selector: ".hero .div-4 .hero-text._1", text: "client :" },
+          { selector: ".hero .div-5 .hero-text._2", text: "rôle :" },
+          { selector: ".hero .div-5 .hero-text-under._2", text: "Architecte projet, Chef de projet" },
+          { selector: ".hero .div-6 .hero-text._3", text: "année :" },
+          { selector: "#heading-container h4:nth-child(2)", text: "Data Engineering & NLP" },
+          { selector: "#heading-container h4:nth-child(3)", text: "Analytics" },
+          {
+            selector: "#heading-container-desc .text-block.project",
+            text: "Projet académique data à grande échelle sur Yelp Academic. J'ai tenu principalement un rôle d'architecte projet et de chef de projet, en planifiant l'intégralité du projet sur Linear pour permettre à une équipe de 5 de travailler efficacement. J'ai conçu le workflow de bout en bout : ingestion JSONL volumineuse, nettoyage qualité des données, conversion Parquet, préparation NLP et analyse via dashboards pour extraire des insights actionnables sur les comportements reviewers et la qualité des avis."
+          },
+          { selector: "#heading-container3 h4", text: "Pipeline & méthode" },
+          {
+            selector: "#heading-container3 + .wrap.project .text-block.project",
+            text: "Défi principal : transformer des données Yelp brutes hétérogènes en une base analytique fiable tout en pilotant une livraison multi-contributeurs. J'ai structuré la roadmap, les jalons et la répartition des tâches dans Linear pour une équipe de 5. Le pipeline inclut nettoyage robuste (doublons, clés critiques manquantes, normalisation types/dates), persistance Parquet pour la performance, puis préparation NLP (tokenization, stopwords, lemmatization) avant analyse TF-IDF/Word2Vec."
+          },
+          { selector: "#heading-container5 h4", text: "Insights clés" },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(1)", text: "<strong>Profils reviewers :</strong> différences nettes de sévérité et de verbosité selon le profil utilisateur.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Dynamique des avis :</strong> relation observable entre longueur des avis et nombre d'étoiles.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Répartition satisfaction :</strong> distribution des sentiments dérivée des classes d'étoiles.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Stack réutilisable :</strong> insights notebook consolidés dans des modules Python réutilisables.", html: true },
+          { selector: "#heading-container4", text: "projet suivant" },
+          { selector: 'a[href="#top"].bold-text.small', text: "retour en haut" },
+          { selector: '#contact a[href^="mailto:"]', text: "e-mail" }
+        ]
+      },
+      es: {
+        meta: {
+          title: "Adam El Hirch | Yelp Data Analytics",
+          description:
+            "Yelp Data Analytics es un proyecto de data engineering y NLP sobre Yelp Academic con dashboards analíticos."
+        },
+        rules: [
+          { selector: ".nav-link._1 .overflow._1", text: "Proyectos" },
+          { selector: ".nav-link._2 .overflow._2", text: "Sobre mí" },
+          { selector: ".nav-link._3 .overflow._3", text: "Contacto" },
+          { selector: ".hero .div-4 .hero-text._1", text: "cliente:" },
+          { selector: ".hero .div-5 .hero-text._2", text: "rol:" },
+          { selector: ".hero .div-5 .hero-text-under._2", text: "Arquitecto del proyecto, Project Manager" },
+          { selector: ".hero .div-6 .hero-text._3", text: "año:" },
+          { selector: "#heading-container h4:nth-child(2)", text: "Data Engineering & NLP" },
+          { selector: "#heading-container h4:nth-child(3)", text: "Analytics" },
+          {
+            selector: "#heading-container-desc .text-block.project",
+            text: "Proyecto académico de datos a gran escala sobre Yelp Academic. Mi rol principal fue arquitecto del proyecto y project manager, planificando el proyecto completo en Linear para que un equipo de 5 pudiera trabajar de forma eficiente. Diseñé el flujo end-to-end: ingesta de JSONL voluminoso, limpieza de calidad, conversión a Parquet, preparación NLP y análisis con dashboards para obtener insights accionables sobre comportamiento de reviewers y calidad de reseñas."
+          },
+          { selector: "#heading-container3 h4", text: "Pipeline y método" },
+          {
+            selector: "#heading-container3 + .wrap.project .text-block.project",
+            text: "Reto principal: transformar datos Yelp crudos y heterogéneos en una base analítica fiable mientras se coordinaba una entrega con varios colaboradores. Estructuré la hoja de ruta, hitos y ownership de tareas en Linear para un equipo de 5. El pipeline incluye limpieza robusta (duplicados, claves críticas faltantes, normalización de tipos/fechas), persistencia en Parquet para rendimiento, y preparación NLP (tokenización, stopwords, lematización) antes del análisis TF-IDF/Word2Vec."
+          },
+          { selector: "#heading-container5 h4", text: "Insights clave" },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(1)", text: "<strong>Perfiles de reviewers:</strong> diferencias claras de severidad y verbosidad según perfil de usuario.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Dinámica de reseñas:</strong> relación observable entre longitud de reseña y puntuación en estrellas.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Distribución de satisfacción:</strong> reparto de sentimiento derivado de clases de estrellas.", html: true },
+          { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Stack reutilizable:</strong> insights de notebooks consolidados en módulos Python reutilizables.", html: true },
+          { selector: "#heading-container4", text: "siguiente proyecto" },
+          { selector: 'a[href="#top"].bold-text.small', text: "volver arriba" },
+          { selector: '#contact a[href^="mailto:"]', text: "correo" }
+        ]
+      }
+    },
     "about.html": {
       fr: {
         meta: {
@@ -385,6 +461,7 @@
           { selector: ".nav-link._1 .overflow._1", text: "Projets" },
           { selector: ".nav-link._2 .overflow._2", text: "À propos" },
           { selector: ".nav-link._3 .overflow._3", text: "Contact" },
+          { selector: '[data-i18n=\"about_page_resume_btn\"]', text: "cv ->" },
           { selector: '[data-i18n=\"about_page_hero_1\"]', text: "créons" },
           { selector: '[data-i18n=\"about_page_hero_2\"]', text: "quelque chose" },
           { selector: '[data-i18n=\"about_page_hero_3\"]', text: "de fort" },
@@ -392,6 +469,7 @@
           { selector: '[data-i18n=\"about_page_intro_1\"]', text: "Je suis étudiant en BUT Informatique (parcours AGED)." },
           { selector: '[data-i18n=\"about_page_intro_2\"]', text: "Je me concentre sur les systèmes d'IA, les architectures avancées et l'ingénierie orientée performance." },
           { selector: '[data-i18n=\"about_page_intro_3\"]', text: "Je recherche actuellement un stage à partir de mars 2026." },
+          { selector: '[data-i18n=\"about_page_intro_4\"]', text: "L'an dernier, j'ai effectué un stage dans une SARL au Maroc, où j'ai travaillé sur l'extraction, le nettoyage et la structuration de données, ainsi que sur la production de tableaux de bord de reporting opérationnel." },
           { selector: '[data-i18n=\"about_page_focus_title\"]', text: "Domaines de focus" },
           { selector: '[data-i18n=\"about_page_focus_1\"]', text: "Systèmes d'IA, LLM, Machine Learning et NLP." },
           { selector: '[data-i18n=\"about_page_focus_2\"]', text: "Architectures logicielles avancées et concepts techniques approfondis." },
@@ -400,8 +478,10 @@
           { selector: '[data-i18n=\"about_page_focus_5\"]', text: "Projets open source et expérimentaux à forte ambition technique." },
           { selector: '[data-i18n=\"about_page_work_title\"]', text: "Ma façon de travailler" },
           { selector: '[data-i18n=\"about_page_work_text\"]', text: "Je combine profondeur technique et exécution structurée : planification, priorisation, optimisation des ressources et ownership de bout en bout. Mon objectif est d'évoluer vers des rôles techniques à responsabilité : architecture logicielle, lead technique, R&D et création de produit." },
-          { selector: '[data-i18n=\"about_page_footer_back\"]', text: "retour en haut" },
-          { selector: '[data-i18n=\"about_page_footer_mail\"]', text: "e-mail" }
+          { selector: '[data-i18n=\"footer_title\"]', text: "entrons en<br />contact", html: true },
+          { selector: '[data-i18n=\"footer_email_label\"]', text: "e-mail" },
+          { selector: '[data-i18n=\"footer_github_label\"]', text: "github" },
+          { selector: '[data-i18n=\"footer_linkedin_label\"]', text: "linkedin" }
         ]
       },
       es: {
@@ -413,6 +493,7 @@
           { selector: ".nav-link._1 .overflow._1", text: "Proyectos" },
           { selector: ".nav-link._2 .overflow._2", text: "Sobre mí" },
           { selector: ".nav-link._3 .overflow._3", text: "Contacto" },
+          { selector: '[data-i18n=\"about_page_resume_btn\"]', text: "cv ->" },
           { selector: '[data-i18n=\"about_page_hero_1\"]', text: "creemos" },
           { selector: '[data-i18n=\"about_page_hero_2\"]', text: "algo" },
           { selector: '[data-i18n=\"about_page_hero_3\"]', text: "potente" },
@@ -420,6 +501,7 @@
           { selector: '[data-i18n=\"about_page_intro_1\"]', text: "Soy estudiante de BUT Informatique (itinerario AGED)." },
           { selector: '[data-i18n=\"about_page_intro_2\"]', text: "Me enfoco en sistemas de IA, arquitecturas avanzadas e ingeniería orientada al rendimiento." },
           { selector: '[data-i18n=\"about_page_intro_3\"]', text: "Actualmente busco prácticas a partir de marzo de 2026." },
+          { selector: '[data-i18n=\"about_page_intro_4\"]', text: "El año pasado hice prácticas en una SARL en Marruecos, donde trabajé en extracción, limpieza y estructuración de datos, además de la elaboración de dashboards de reporting operativo." },
           { selector: '[data-i18n=\"about_page_focus_title\"]', text: "Áreas de enfoque" },
           { selector: '[data-i18n=\"about_page_focus_1\"]', text: "Sistemas de IA, LLM, Machine Learning y NLP." },
           { selector: '[data-i18n=\"about_page_focus_2\"]', text: "Arquitecturas de software avanzadas y conceptos técnicos profundos." },
@@ -428,8 +510,10 @@
           { selector: '[data-i18n=\"about_page_focus_5\"]', text: "Proyectos open source y experimentales con alta exigencia técnica." },
           { selector: '[data-i18n=\"about_page_work_title\"]', text: "Cómo trabajo" },
           { selector: '[data-i18n=\"about_page_work_text\"]', text: "Combino profundidad técnica con ejecución estructurada: planificación, priorización, optimización de recursos y ownership end-to-end. Mi objetivo es evolucionar hacia roles técnicos de responsabilidad: arquitectura, lead técnico, I+D y creación de producto." },
-          { selector: '[data-i18n=\"about_page_footer_back\"]', text: "volver arriba" },
-          { selector: '[data-i18n=\"about_page_footer_mail\"]', text: "correo" }
+          { selector: '[data-i18n=\"footer_title\"]', text: "pongámonos en<br />contacto", html: true },
+          { selector: '[data-i18n=\"footer_email_label\"]', text: "correo" },
+          { selector: '[data-i18n=\"footer_github_label\"]', text: "github" },
+          { selector: '[data-i18n=\"footer_linkedin_label\"]', text: "linkedin" }
         ]
       }
     }

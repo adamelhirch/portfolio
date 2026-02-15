@@ -1,48 +1,65 @@
-Tu es un agent DevOps sur un VPS Ubuntu 22.04/24.04. Configure et déploie un site statique pour le domaine `adamelhirch.com` (déjà pointé DNS vers ce VPS).
+Tu es un agent DevOps sur un VPS Ubuntu 22.04/24.04.
+Objectif: déployer en production le portfolio statique sur `adamelhirch.com` (DNS déjà pointé), avec HTTPS, config Nginx propre et déploiement reproductible.
 
-Objectif
-- Servir le portfolio statique en production via Nginx.
-- Activer HTTPS Let's Encrypt.
-- Mettre en place redirection HTTP->HTTPS et `www` -> domaine racine.
-- Configurer cache et compression adaptés à des assets statiques.
-- Rendre le déploiement reproductible.
+Contexte application
+- Site statique multi-pages (pas de build).
+- Fichiers clés à servir: `index.html`, `about.html`, `candigo.html`, `yelp-analytics.html`, `seriesflix.html`, `nutrisight.html`, `style.css`, `index.js`, `vendor/`, `images/`.
+- Le header "Contact" des pages pointe vers `index.html#contact`.
+- Le CV est servi via `El HIRCH ADAM CV.pdf`.
 
 Contraintes
-- Ne pas poser de questions tant qu'une hypothèse raisonnable existe.
+- Ne pas poser de questions si une hypothèse raisonnable existe.
 - Exécuter des commandes idempotentes.
-- Afficher les commandes lancées + le résultat utile.
-- Si un prérequis manque, l'installer automatiquement.
+- Afficher les commandes exécutées et les résultats utiles.
+- Installer automatiquement les prérequis manquants.
+- En cas d'erreur, corriger et continuer.
+
+Hypothèses de travail
+- Le dépôt est déjà cloné sur le VPS.
+- Le répertoire courant (`$PWD`) est la racine du dépôt.
+- Domaine principal: `adamelhirch.com`.
+- Email TLS: `admin@adamelhirch.com`.
 
 Plan d'action attendu
-1. Vérifier OS + accès root/sudo.
-2. Installer/mettre à jour paquets requis: `nginx`, `certbot`, `python3-certbot-nginx`, `rsync`.
-3. Préparer le dossier web:
-   - Racine: `/var/www/adamelhirch.com/current`
-   - Créer le dossier si absent.
-4. Déployer les fichiers du portfolio dans cette racine (synchronisation propre), en excluant au minimum:
-   - `.git/`, `.claude/`, `.DS_Store`, `**/.DS_Store`
-5. Créer la config Nginx `/etc/nginx/sites-available/adamelhirch.com` avec:
+1. Préchecks système:
+   - Vérifier OS, utilisateur, sudo.
+   - Vérifier que `index.html` existe dans le dossier courant.
+2. Installer/mettre à jour paquets:
+   - `nginx`, `certbot`, `python3-certbot-nginx`, `rsync`, `curl`.
+3. Préparer dossiers:
+   - `WEB_ROOT=/var/www/adamelhirch.com/current`
+   - créer les dossiers nécessaires.
+4. Déployer les fichiers statiques avec synchronisation propre:
+   - `rsync -a --delete` depuis le repo vers `$WEB_ROOT`
+   - exclure au minimum: `.git/`, `.claude/`, `.DS_Store`, `**/.DS_Store`, `*.log`
+5. Configurer Nginx:
+   - fichier: `/etc/nginx/sites-available/adamelhirch.com`
    - `server_name adamelhirch.com www.adamelhirch.com;`
-   - `root /var/www/adamelhirch.com/current;`
+   - racine: `/var/www/adamelhirch.com/current`
    - `index index.html;`
    - `location / { try_files $uri $uri/ =404; }`
-   - cache long pour assets versionnés (`css|js|png|jpg|jpeg|gif|svg|webp|woff|woff2`).
-   - `gzip on` pour textes/css/js/svg/json.
+   - gzip activé pour texte/css/js/svg/json
+   - cache long pour assets statiques
 6. Activer le site:
    - symlink dans `sites-enabled`
-   - désactiver `default` si actif
-   - `nginx -t` puis reload.
-7. Générer certificat TLS:
+   - désactiver `default` si nécessaire
+   - `nginx -t` puis reload
+7. Activer HTTPS Let's Encrypt:
    - `certbot --nginx -d adamelhirch.com -d www.adamelhirch.com --redirect --non-interactive --agree-tos -m admin@adamelhirch.com`
-8. Forcer redirection `www` vers racine (301) si certbot ne l'a pas fait.
-9. Vérifier renouvellement auto:
+8. Forcer `www -> root`:
+   - garantir redirection 301 `https://www.adamelhirch.com/*` vers `https://adamelhirch.com/*`
+9. Vérifier renouvellement:
    - `systemctl status certbot.timer`
    - `certbot renew --dry-run`
-10. Vérifications finales:
-   - `curl -I http://adamelhirch.com` -> 301/308 vers https
-   - `curl -I https://adamelhirch.com` -> 200
-   - `curl -I https://www.adamelhirch.com` -> redirection vers https://adamelhirch.com
-   - confirmer que `index.html`, `images/`, `vendor/`, `style.css`, `index.js` sont accessibles.
+10. Vérifications fonctionnelles finales:
+   - `curl -I http://adamelhirch.com` -> redirection vers HTTPS
+   - `curl -I https://adamelhirch.com` -> `200`
+   - `curl -I https://www.adamelhirch.com` -> redirection vers root
+   - `curl -I https://adamelhirch.com/index.html` -> `200`
+   - `curl -I https://adamelhirch.com/about.html` -> `200`
+   - `curl -I https://adamelhirch.com/yelp-analytics.html` -> `200`
+   - `curl -I https://adamelhirch.com/images/profile-photo.jpg` -> `200`
+   - `curl -I "https://adamelhirch.com/El%20HIRCH%20ADAM%20CV.pdf"` -> `200`
 
 Config Nginx cible (adapte uniquement si nécessaire)
 ```nginx
@@ -51,8 +68,13 @@ server {
     listen [::]:80;
     server_name adamelhirch.com www.adamelhirch.com;
 
-    location /.well-known/acme-challenge/ { root /var/www/adamelhirch.com/current; }
-    location / { return 301 https://adamelhirch.com$request_uri; }
+    location /.well-known/acme-challenge/ {
+        root /var/www/adamelhirch.com/current;
+    }
+
+    location / {
+        return 301 https://adamelhirch.com$request_uri;
+    }
 }
 
 server {
@@ -91,8 +113,13 @@ server {
 }
 ```
 
-Livrables en sortie
-- Résumé clair de ce qui a été configuré.
+Commande de redeploy attendue en sortie
+- Fournir une commande unique de redeploy réutilisable, exemple:
+  - `rsync -a --delete --exclude '.git/' --exclude '.claude/' --exclude '.DS_Store' ./ /var/www/adamelhirch.com/current/ && sudo nginx -t && sudo systemctl reload nginx`
+
+Livrables finaux
+- Résumé de config appliquée.
 - Chemins exacts utilisés.
-- Résultat des checks `curl -I`.
-- Commande de déploiement à relancer pour les prochaines mises à jour (ex: `rsync ... && systemctl reload nginx`).
+- Résultats des checks `curl -I`.
+- Statut TLS/renouvellement.
+- Commande de redeploy prête à copier-coller.

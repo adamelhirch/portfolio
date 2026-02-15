@@ -4,11 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title>Adam El Hirch | About</title>
-  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership." name="description">
+  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership."
+    name="description">
   <meta content="Adam El Hirch | About" property="og:title">
-  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership." property="og:description">
+  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership."
+    property="og:description">
   <meta content="Adam El Hirch | About" property="twitter:title">
-  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership." property="twitter:description">
+  <meta content="About Adam El Hirch: AI, systems architecture, performance engineering, and project leadership."
+    property="twitter:description">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -86,32 +89,80 @@
 
     .about-hero-blur-target {
       will-change: transform, opacity, filter;
-      filter: blur(0px);
+      filter: blur(3px);
     }
 
     .about-intro-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(200px, 20vw);
-      gap: 2vw;
-      align-items: end;
+      grid-template-columns: minmax(280px, 36vw) minmax(0, 1fr);
+      gap: 1.2vw;
+      align-items: start;
+      position: relative;
+      min-height: clamp(420px, 52vw, 760px);
+    }
+
+    .about-intro-layout .text-block.about {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      position: relative;
+      z-index: 2;
+      max-width: min(62ch, 72vw);
+      margin-top: clamp(0.5rem, 2vw, 2rem);
+      margin-left: clamp(170px, 22vw, 360px);
     }
 
     .about-profile-card {
+      grid-column: 1;
+      grid-row: 1;
       width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      background:
-        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.8), transparent 28%),
-        linear-gradient(145deg, #d7d7d7 0%, #ececec 45%, #c8c8c8 100%);
+      aspect-ratio: auto;
+      border-radius: 0;
+      overflow: visible;
+      border: 0;
+      background: transparent;
+      z-index: 1;
+      max-width: 540px;
+      margin-top: clamp(4.5rem, 9vw, 9rem);
     }
 
     .about-profile-image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       display: block;
+      filter: brightness(1.22) contrast(0.94);
+    }
+
+    .about-resume-inline {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .about-resume-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 230px;
+      padding: 0.82rem 3.1rem;
+      border-radius: 999px;
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+      font-family: Lato, sans-serif;
+      font-size: 1.34rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .about-resume-btn:hover {
+      background: transparent;
+      color: #111;
+      transform: translateY(-1px);
     }
 
     @media screen and (max-width: 991px) {
@@ -127,11 +178,22 @@
 
       .about-intro-layout {
         grid-template-columns: 1fr;
-        gap: 4vw;
+        gap: 3.2vw;
+        min-height: auto;
+      }
+
+      .about-intro-layout .text-block.about {
+        grid-column: 1;
+        grid-row: auto;
+        margin: 0;
+        max-width: 100%;
       }
 
       .about-profile-card {
-        max-width: 340px;
+        grid-column: 1;
+        grid-row: auto;
+        max-width: 420px;
+        margin: 0 auto;
       }
     }
 
@@ -154,8 +216,19 @@
 
       .about-profile-card {
         max-width: 100%;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: auto;
       }
+
+      .about-resume-inline {
+        justify-content: center;
+      }
+
+      .about-resume-btn {
+        min-width: 190px;
+        font-size: 1.22rem;
+        padding: 0.72rem 2.2rem;
+      }
+
     }
   </style>
 </head>
@@ -182,16 +255,45 @@
       }
 
       @keyframes grain-anim {
-        0% { transform: translate(0, 0); }
-        10% { transform: translate(-2%, -3%); }
-        20% { transform: translate(1%, -1%); }
-        30% { transform: translate(-1%, 2%); }
-        40% { transform: translate(3%, -2%); }
-        50% { transform: translate(-3%, 1%); }
-        60% { transform: translate(2%, 3%); }
-        70% { transform: translate(-2%, -1%); }
-        80% { transform: translate(1%, 2%); }
-        90% { transform: translate(-1%, -2%); }
+        0% {
+          transform: translate(0, 0);
+        }
+
+        10% {
+          transform: translate(-2%, -3%);
+        }
+
+        20% {
+          transform: translate(1%, -1%);
+        }
+
+        30% {
+          transform: translate(-1%, 2%);
+        }
+
+        40% {
+          transform: translate(3%, -2%);
+        }
+
+        50% {
+          transform: translate(-3%, 1%);
+        }
+
+        60% {
+          transform: translate(2%, 3%);
+        }
+
+        70% {
+          transform: translate(-2%, -1%);
+        }
+
+        80% {
+          transform: translate(1%, 2%);
+        }
+
+        90% {
+          transform: translate(-1%, -2%);
+        }
       }
     </style>
     <script>
@@ -236,7 +338,7 @@
                     class="overflow _2">About</strong></span></a></div>
           </div>
           <div class="link-wrapper _3">
-            <div class="in-link-wrap"><a href="#contact" class="nav-link _3"><span class="hidden"><strong
+            <div class="in-link-wrap"><a href="index.html#contact" class="nav-link _3"><span class="hidden"><strong
                     class="overflow _3">Contact</strong></span></a></div>
           </div>
         </div>
@@ -254,19 +356,23 @@
 
     <div id="top" class="section-hero about">
       <div class="wrapper bro">
-        <h2 class="hero-header fade-up tricks about-hero-blur-target" data-slide="left" data-i18n="about_page_hero_1">let's</h2>
+        <h2 class="hero-header fade-up tricks about-hero-blur-target" data-slide="left" data-i18n="about_page_hero_1">
+          let's</h2>
         <div class="img-text-wrap">
-          <h2 class="hero-header fade-up tricks _1 about-hero-blur-target" data-slide="right" data-i18n="about_page_hero_2">create</h2>
+          <h2 class="hero-header fade-up tricks _1 about-hero-blur-target" data-slide="right"
+            data-i18n="about_page_hero_2">create</h2>
           <div class="text-image-1 about-hero-blur-target" data-slide="left">
             <img src="images/candigo-thumb-large.jpg" alt="CandiGO" class="about-inline-image">
           </div>
         </div>
-        <h2 class="hero-header fade-up tricks _2 about-hero-blur-target" data-slide="left" data-i18n="about_page_hero_3">something</h2>
+        <h2 class="hero-header fade-up tricks _2 about-hero-blur-target" data-slide="left"
+          data-i18n="about_page_hero_3">something</h2>
         <div class="img-text-wrap">
           <div class="text-image-2 about-hero-blur-target" data-slide="right">
             <img src="images/seriesflix-thumb-large.jpg" alt="SeriesFlix" class="about-inline-image">
           </div>
-          <h2 class="hero-header fade-up tricks _3 about-hero-blur-target" data-slide="right" data-i18n="about_page_hero_4">together</h2>
+          <h2 class="hero-header fade-up tricks _3 about-hero-blur-target" data-slide="right"
+            data-i18n="about_page_hero_4">together</h2>
         </div>
       </div>
     </div>
@@ -276,12 +382,23 @@
         <div id="heading-container-about" class="wrap about">
           <div class="about-intro-layout">
             <div class="text-block about">
-              <span class="fade-up2 tricks" data-i18n="about_page_intro_1">Hi, I'm a BUT Informatique student (AGED track).</span><br>
-              <span class="fade-up2 tricks" data-i18n="about_page_intro_2">I focus on AI systems, advanced architectures, and high-performance engineering.</span><br>
-              <span class="fade-up2 tricks" data-i18n="about_page_intro_3">I am currently looking for an internship starting March 2026.</span>
+              <span class="fade-up2 tricks" data-i18n="about_page_intro_1">Hi, I'm a BUT Informatique student (AGED
+                track).</span><br>
+              <span class="fade-up2 tricks" data-i18n="about_page_intro_2">I focus on AI systems, advanced
+                architectures, and high-performance engineering.</span><br>
+              <span class="fade-up2 tricks" data-i18n="about_page_intro_3">I am currently looking for an internship
+                starting March 2026.</span><br>
+              <span class="fade-up2 tricks" data-i18n="about_page_intro_4">Last year, I completed an internship in a
+                Moroccan SARL, where I worked on data extraction, data cleaning, structuring datasets for analysis, and
+                producing operational reporting dashboards.</span>
+              <div class="about-resume-inline">
+                <a class="about-resume-btn" href="El%20HIRCH%20ADAM%20CV.pdf" target="_blank" rel="noopener"
+                  data-i18n="about_page_resume_btn">resume -&gt;</a>
+              </div>
             </div>
             <div class="about-profile-card">
-              <img src="images/profile-photo.jpg" alt="Portrait of Adam El Hirch" class="about-profile-image" loading="lazy" decoding="async" onerror="this.remove()">
+              <img src="images/profile-photo.jpg" alt="Portrait of Adam El Hirch" class="about-profile-image"
+                loading="lazy" decoding="async" onerror="this.remove()">
             </div>
           </div>
         </div>
@@ -298,8 +415,10 @@
             <li data-i18n="about_page_focus_1">AI systems, LLMs, Machine Learning, and NLP.</li>
             <li data-i18n="about_page_focus_2">Advanced software architectures and deep technical concepts.</li>
             <li data-i18n="about_page_focus_3">System internals, limits, and optimization strategies.</li>
-            <li data-i18n="about_page_focus_4">Modern technologies such as Rust, with performance and security in mind.</li>
-            <li data-i18n="about_page_focus_5">Open-source and experimental projects with strong technical ambition.</li>
+            <li data-i18n="about_page_focus_4">Modern technologies such as Rust, with performance and security in mind.
+            </li>
+            <li data-i18n="about_page_focus_5">Open-source and experimental projects with strong technical ambition.
+            </li>
           </ul>
         </div>
       </div>
@@ -312,7 +431,8 @@
         </div>
         <div class="wrap project">
           <div class="text-block project" data-i18n="about_page_work_text">
-            I combine technical depth with structured execution: project planning, prioritization, resource optimization,
+            I combine technical depth with structured execution: project planning, prioritization, resource
+            optimization,
             and end-to-end ownership. My goal is to grow into high-responsibility technical roles such as software
             architecture, technical lead, R&amp;D, and product creation.
           </div>
@@ -320,44 +440,57 @@
       </div>
     </div>
 
-    <div id="contact" class="section footer">
-      <div class="list-wrapper next-project">
-        <div class="btm-line-copy"></div>
+    <div id="contact" class="section v4">
+      <div id="heading-container3" class="div-block-6">
+        <h3 class="fade-up3 tricks" data-i18n="footer_title">get in<br />touch</h3>
       </div>
-      <div class="wrapper next">
-        <div class="flex-item next-copy">
-          <ul role="list" class="w-list-unstyled">
-            <li><a href="#top" class="bold-text small w--current" data-i18n="about_page_footer_back">back to top</a></li>
-          </ul>
+      <div class="contact-wrapper">
+        <div class="btm-line"></div>
+        <div class="contact-wrap">
+          <div class="wrap _25vw">
+            <div class="h5" data-i18n="footer_email_label">email</div>
+            <a data-w-id="73eeb21c-46c7-045c-7c46-8eb5f5eef88e" href="mailto:contact@adamelhirch.com"
+              class="text-small">contact@adamelhirch.com</a>
+          </div>
+          <div class="wrap _12-5vw">
+            <div class="h5" data-i18n="footer_github_label">github</div>
+            <a data-w-id="73eeb21c-46c7-045c-7c46-8eb5f5eef896" href="https://github.com/adamelhirch" target="_blank"
+              class="text-small">adamelhirch</a>
+          </div>
         </div>
         <div class="contact-wrap">
-          <div class="flex-item next">
-            <ul role="list" class="w-list-unstyled">
-              <li><a href="mailto:contact@adamelhirch.com" class="bold-text small" data-i18n="about_page_footer_mail">mail</a></li>
-            </ul>
-          </div>
-          <div class="flex-item next">
-            <ul role="list" class="w-list-unstyled">
-              <li class="list-ite"><a href="https://github.com/adamelhirch" class="bold-text small">github</a></li>
-            </ul>
-          </div>
-          <div class="flex-item next">
-            <ul role="list" class="w-list-unstyled">
-              <li><a href="https://www.linkedin.com/in/adam-el-hirch" class="bold-text small">linkedin</a></li>
-            </ul>
+          <div class="wrap _25vw">
+            <div class="h5" data-i18n="footer_linkedin_label">linkedin</div>
+            <a data-w-id="73eeb21c-46c7-045c-7c46-8eb5f5eef8a7" href="https://www.linkedin.com/in/adam-el-hirch"
+              target="_blank" class="text-small">adam el hirch</a>
           </div>
         </div>
+        <div class="btm-line"></div>
       </div>
     </div>
 
     <div class="line-wrapper">
-      <div class="inner-line-wrapper _1"><div class="line _1"></div></div>
-      <div class="inner-line-wrapper"><div class="line _2"></div></div>
-      <div class="inner-line-wrapper"><div class="line _3"></div></div>
-      <div class="inner-line-wrapper"><div class="line _4"></div></div>
-      <div class="inner-line-wrapper"><div class="line _5"></div></div>
-      <div class="inner-line-wrapper"><div class="line _6"></div></div>
-      <div class="inner-line-wrapper _1"><div class="line _7"></div></div>
+      <div class="inner-line-wrapper _1">
+        <div class="line _1"></div>
+      </div>
+      <div class="inner-line-wrapper">
+        <div class="line _2"></div>
+      </div>
+      <div class="inner-line-wrapper">
+        <div class="line _3"></div>
+      </div>
+      <div class="inner-line-wrapper">
+        <div class="line _4"></div>
+      </div>
+      <div class="inner-line-wrapper">
+        <div class="line _5"></div>
+      </div>
+      <div class="inner-line-wrapper">
+        <div class="line _6"></div>
+      </div>
+      <div class="inner-line-wrapper _1">
+        <div class="line _7"></div>
+      </div>
     </div>
   </div>
 
@@ -377,8 +510,34 @@
 
   <script>
     $('a.link, a.grid-item, a.nav-link, a.titel').click(function (e) {
-      e.preventDefault();
       var goTo = this.getAttribute('href');
+      if (goTo) {
+        var targetHash = null;
+
+        if (goTo.charAt(0) === '#' && goTo.length > 1) {
+          targetHash = goTo;
+        } else {
+          try {
+            var parsedUrl = new URL(goTo, window.location.href);
+            if (parsedUrl.hash && parsedUrl.pathname === window.location.pathname) {
+              targetHash = parsedUrl.hash;
+            }
+          } catch (err) { }
+        }
+
+        if (targetHash) {
+          var target = document.querySelector(targetHash);
+          if (target) {
+            e.preventDefault();
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState(null, '', targetHash);
+            }
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+        }
+      }
+      e.preventDefault();
       setTimeout(function () {
         window.location = goTo;
       }, 1200);
@@ -386,11 +545,24 @@
   </script>
 
   <style>
-    .letter { display: inline-block; }
-    .tricksword { white-space: nowrap; }
-    .fade-up2 .letter { opacity: 0; transform: translateY(90px); }
+    .letter {
+      display: inline-block;
+    }
+
+    .tricksword {
+      white-space: nowrap;
+    }
+
+    .fade-up2 .letter {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+
     .fade-up3 .letter,
-    .fade-up4 .letter { opacity: 0; transform: translateY(100px); }
+    .fade-up4 .letter {
+      opacity: 0;
+      transform: translateY(100px);
+    }
   </style>
   <script src="vendor/js/anime.min.js"></script>
   <script src="vendor/js/jquery.inview.min.js"></script>
@@ -492,16 +664,21 @@
 
       function updateHeroMotion() {
         var progress = getHeroProgress();
-        var blurPx = 22 * Math.pow(progress, 1.8); // start almost sharp, then intensify near section exit
+        var eased = Math.pow(progress, 1.35);
+        var blurPx = 3 + (17 * eased); // soft blur at load, stronger blur while leaving hero
         for (var i = 0; i < targets.length; i++) {
           targets[i].style.filter = 'blur(' + blurPx.toFixed(2) + 'px)';
           targets[i].style.opacity = '';
         }
 
-        var distance = 100 * progress; // sync with index-style 0% -> 100% horizontal travel
+        var distance = 8 + (62 * Math.pow(progress, 1.1)); // readable at load, then wider horizontal split
         for (var j = 0; j < slideTargets.length; j++) {
           var dir = slideTargets[j].getAttribute('data-slide') === 'right' ? 1 : -1;
-          slideTargets[j].style.transform = 'translate3d(' + (dir * distance).toFixed(2) + 'vw, 0, 0)';
+          var key = slideTargets[j].getAttribute('data-i18n');
+          var factor = 1;
+          if (key === 'about_page_hero_1') factor = 0.28;
+          if (key === 'about_page_hero_3') factor = 0;
+          slideTargets[j].style.transform = 'translate3d(' + (dir * distance * factor).toFixed(2) + 'vw, 0, 0)';
         }
       }
 

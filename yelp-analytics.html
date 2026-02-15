@@ -10,14 +10,14 @@
     }
   </style>
   <meta charset="utf-8">
-  <title>Adam El Hirch | SeriesFlix</title>
-  <meta content="SeriesFlix is a full-stack search and recommendation engine for TV series based on subtitle analysis."
+  <title>Adam El Hirch | Yelp Data Analytics</title>
+  <meta content="Yelp Data Analytics is a large-scale data engineering and NLP project on Yelp Academic dataset with interactive dashboards."
     name="description">
-  <meta content="Adam El Hirch | SeriesFlix" property="og:title">
-  <meta content="SeriesFlix is a full-stack search and recommendation engine for TV series based on subtitle analysis."
+  <meta content="Adam El Hirch | Yelp Data Analytics" property="og:title">
+  <meta content="Yelp Data Analytics is a large-scale data engineering and NLP project on Yelp Academic dataset with interactive dashboards."
     property="og:description">
-  <meta content="Adam El Hirch | SeriesFlix" property="twitter:title">
-  <meta content="SeriesFlix is a full-stack search and recommendation engine for TV series based on subtitle analysis."
+  <meta content="Adam El Hirch | Yelp Data Analytics" property="twitter:title">
+  <meta content="Yelp Data Analytics is a large-scale data engineering and NLP project on Yelp Academic dataset with interactive dashboards."
     property="twitter:description">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
@@ -171,6 +171,29 @@
   <style type="text/css">
     .fade-up4 {
       pointer-events: none;
+    }
+
+    .yelp-viz-section {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .yelp-viz-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .yelp-viz-img {
+      width: 75%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .yelp-next {
+      margin-top: 2rem;
     }
 
     .next-grid-wrapper {
@@ -341,81 +364,91 @@
         <div class="project-name-wrap">
           <div class="div-4">
             <div class="hero-text _1">client:<br></div>
-            <div class="hero-text-under _1">SAÉ 5C01 — BUT Informatique</div>
+            <div class="hero-text-under _1">SAÉ 6C01 — BUT Informatique</div>
           </div>
           <div class="div-5">
             <div class="hero-text _2">role: </div>
-            <div class="hero-text-under _2">Data Engineer, Full-Stack Dev</div>
+            <div class="hero-text-under _2">Project Architect, Project Manager</div>
           </div>
           <div class="div-6">
             <div class="hero-text _3">year:<br></div>
-            <div class="hero-text-under _3">2025</div>
+            <div class="hero-text-under _3">2026</div>
           </div>
         </div>
         <div class="hero-line"></div>
       </div>
-      <div class="bg-image-wrapper seriesflix"></div>
+      <div class="bg-image-wrapper" style="background-image: url('images/yelp-hero.png'); background-size: cover; background-position: center;"></div>
     </div>
     <div class="section project">
       <div class="wrapper flex">
         <div id="heading-container" class="wrap h4">
-          <h4 class="fade-up tricks">SeriesFlix</h4>
-          <h4 class="fade-up tricks">TV Series Search</h4>
-          <h4 class="fade-up tricks">& Recommendation</h4>
+          <h4 class="fade-up tricks">Yelp Data</h4>
+          <h4 class="fade-up tricks">Engineering & NLP</h4>
+          <h4 class="fade-up tricks">Analytics</h4>
         </div>
         <div id="heading-container-desc" class="wrap project">
-          <div class="text-block project">SeriesFlix is a full-stack search and recommendation engine
-            for TV series,
-            leveraging Natural Language Processing (NLP) to analyze over 15,000 subtitles. Built with Flask, React, and
-            PostgreSQL, it features a BM25 ranking algorithm and a content-based filtering system for personalized
-            recommendations.</div>
+          <div class="text-block project">A full-scale academic data project on the Yelp Academic dataset. I acted primarily as project architect and project manager, planning the full project in Linear to enable efficient collaboration across a 5-person team. I designed the end-to-end workflow: ingestion of large JSONL sources, data quality cleaning, Parquet conversion, NLP preprocessing, and dashboard-driven analysis to extract actionable insights on reviewer behavior and review quality patterns.</div>
         </div>
       </div>
-    </div>
-    <div class="section project img">
-      <div class="w-layout-grid project-img-grid"><img src="images/seriesflix.png" loading="lazy" id="w-node-basic-img"
-          alt="SeriesFlix Interface" class="basic-img"></div>
     </div>
     <div class="section project">
       <div class="wrapper flex projects _2">
         <div id="heading-container3" class="wrap h4">
-          <h4 class="fade-up3 tricks">The Challenge</h4>
+          <h4 class="fade-up3 tricks">Pipeline & Method</h4>
         </div>
         <div class="wrap project">
-          <div class="text-block project">The main challenge was handling and indexing massive amounts of unstructured
-            textual data from SRT files. I developed an automated ETL pipeline that unzips, parses, cleans, and indexes
-            subtitles using Mistral AI for metadata enrichment and TMDB API for artwork and cast information.</div>
+          <div class="text-block project">Main challenge: transforming high-volume, heterogeneous raw Yelp data into a reliable analytics base while coordinating a multi-contributor delivery. I structured the roadmap, milestones, and task ownership in Linear for a 5-person team. On execution, the pipeline includes robust cleaning (duplicates, missing critical keys, type/date normalization), Parquet persistence for performance, and NLP preparation (tokenization, stopwords, lemmatization) before TF-IDF/Word2Vec-based analysis.</div>
         </div>
+      </div>
+    </div>
+    <div class="section project img yelp-viz-section">
+      <div class="yelp-viz-wrap">
+        <img src="images/yelp-viz1_severity_by_profile.png" loading="lazy"
+          alt="Yelp - severity score by reviewer profile"
+          class="yelp-viz-img" />
       </div>
     </div>
     <div class="section project">
       <div class="wrapper flex projects _2">
         <div id="heading-container5" class="wrap h4">
-          <h4 class="fade-up5 tricks">Key Features</h4>
+          <h4 class="fade-up5 tricks">Key Insights</h4>
         </div>
         <div class="wrap project">
           <ul class="text-block project">
-            <li><strong>BM25 Search:</strong> Search series by actual dialogue content with relevance scoring.</li>
-            <li><strong>AI Recommendations:</strong> Content-based filtering using TF-IDF and cosine similarity.</li>
-            <li><strong>Metadata Ingestion:</strong> Automated pipeline using Mistral AI for series identification.
-            </li>
-            <li><strong>Admin Dashboard:</strong> Full CRUD management and subtitle upload processing.</li>
+            <li><strong>Reviewer Profiles:</strong> clear severity and verbosity differences by user profile.</li>
+            <li><strong>Review Dynamics:</strong> observable relation between review length and star ratings.</li>
+            <li><strong>Satisfaction Split:</strong> sentiment distribution mapped from rating buckets.</li>
+            <li><strong>Reusable Stack:</strong> notebook insights consolidated with reusable Python modules.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div data-w-id="Section 2" class="section next" id="next-section"
+    <div class="section project img yelp-viz-section">
+      <div class="yelp-viz-wrap">
+        <img src="images/yelp-viz2_length_vs_stars.png" loading="lazy"
+          alt="Yelp - review length versus stars"
+          class="yelp-viz-img" />
+      </div>
+    </div>
+    <div class="section project img yelp-viz-section">
+      <div class="yelp-viz-wrap">
+        <img src="images/yelp-viz3_satisfaction_pie.png" loading="lazy"
+          alt="Yelp - satisfaction pie chart"
+          class="yelp-viz-img" />
+      </div>
+    </div>
+    <div data-w-id="Section 2" class="section next yelp-next" id="next-section"
       style="cursor: none; position: relative; z-index: 20;">
       <div class="list-wrapper next-project">
         <div class="btm-line"></div>
       </div>
       <div id="itemsWrapper" class="grid next-grid-wrapper">
-        <a id="next-grid-item" href="nutrisight.html" class="grid-item next-grid-item w-inline-block"
-          aria-label="Next project: NutriSight">
-          <div id="next-thumb" class="thumb-img__small"><img class="grid__item-img" src="images/nutrisight-thumb-small.jpg"
-              alt="NutriSight"></div>
+        <a id="next-grid-item" href="seriesflix.html" class="grid-item next-grid-item w-inline-block"
+          aria-label="Next project: SeriesFlix">
+          <div id="next-thumb" class="thumb-img__small"><img class="grid__item-img" src="images/seriesflix-thumb-small.jpg"
+              alt="SeriesFlix"></div>
           <div class="thumb-img__large"><img class="grid__item-img grid__item-img--large"
-              src="images/nutrisight-thumb-large.jpg" alt=""></div>
+              src="images/seriesflix-thumb-large.jpg" alt=""></div>
         </a>
       </div>
       <main class="main-copy" style="position: relative; z-index: 1;">
@@ -679,7 +712,7 @@
           document.querySelector('.page-wrapper').style.opacity = '0';
           document.querySelector('.page-wrapper').style.transition = 'opacity 0.6s ease';
           setTimeout(function () {
-            window.location.href = 'nutrisight.html';
+            window.location.href = 'seriesflix.html';
           }, 600);
         });
       }

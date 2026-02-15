@@ -881,7 +881,7 @@
                   data-w-id="c8965ed1-a2ba-967e-fcb9-61fb8067cce1" class="overflow _2">About</strong></span></a></div>
         </div>
         <div data-w-id="c8965ed1-a2ba-967e-fcb9-61fb8067cce3" class="link-wrapper _3">
-          <div class="in-link-wrap"><a href="#contact" class="nav-link _3"><span class="hidden"><strong
+          <div class="in-link-wrap"><a href="index.html#contact" class="nav-link _3"><span class="hidden"><strong
                   data-w-id="c8965ed1-a2ba-967e-fcb9-61fb8067cce7" class="overflow _3">Contact</strong></span></a></div>
         </div>
       </div>
@@ -1079,9 +1079,17 @@
               src="images/candigo-thumb-large.jpg" /></div>
           <h2 class="case-heading"><span class="span">CandiGO</span></h2>
           <div class="btm-line-absolut"></div>
-        </a><a id="w-node-link-block-2-eb60c79d" data-w-id="Link Block 2" href="seriesflix.html"
+        </a><a id="w-node-link-block-2-eb60c79d" data-w-id="Link Block 2" href="yelp-analytics.html"
           class="grid-item item-2 w-inline-block">
           <div data-w-id="197c2f5a-c857-b409-0906-b686cfe6c467" class="thumb-img__small w-embed"><img
+              class="grid__item-img" src="images/yelp-hero.png" /></div>
+          <div class="thumb-img__large w-embed"><img class="grid__item-img grid__item-img--large"
+              src="images/yelp-hero.png" /></div>
+          <h2 class="case-heading"><span class="span">Yelp Analytics</span></h2>
+          <div class="btm-line-absolut"></div>
+        </a><a id="w-node-link-block-eb60c79d" data-w-id="Link Block" href="seriesflix.html"
+          class="grid-item item-3 w-inline-block">
+          <div data-w-id="84757edf-e892-3b5b-0b44-9f0ef167b2c3" class="thumb-img__small w-embed"><img
               class="grid__item-img" src="images/seriesflix-thumb-small.jpg" /></div>
           <div class="thumb-img__large w-embed"><img class="grid__item-img grid__item-img--large"
               src="images/seriesflix-thumb-large.jpg" /></div>
@@ -1102,6 +1110,9 @@
           <div class="text-small"><a href="#" class="text-span"><span class="span">SaaS IA / Fullstack</span></a></div>
         </div>
         <div id="w-node-_197c2f5a-c857-b409-0906-b686cfe6c472-eb60c79d" class="div-1">
+          <div class="text-small"><a href="#" class="text-span"><span class="span">Architect / PM</span></a></div>
+        </div>
+        <div id="w-node-_197c2f5a-c857-b409-0906-b686cfe6c478-eb60c79d" class="div-1">
           <div class="text-small"><a href="#" class="text-span"><span class="span">Data Eng. / NLP</span></a></div>
         </div>
 
@@ -1114,6 +1125,9 @@
           <div class="text-small"><a href="#" class="text-span"><span class="span">2025</span></a></div>
         </div>
         <div id="w-node-_455ea6b8-3d61-68a0-5bcc-baebe39d5ecc-eb60c79d" class="div-3">
+          <div class="text-small"><a href="#" class="text-span"><span class="span">2026</span></a></div>
+        </div>
+        <div id="w-node-_5a440830-83b7-7496-08f1-3d28a2136281-eb60c79d" class="div-3">
           <div class="text-small"><a href="#" class="text-span"><span class="span">2025</span></a></div>
         </div>
 
@@ -1126,9 +1140,12 @@
           <h2 class="fullview__item-title">CandiGO</h2><a href="candigo.html" class="link">View Project</a>
         </div>
         <div class="fullview__item w-clearfix">
+          <h2 class="fullview__item-title">Yelp Analytics</h2><a href="yelp-analytics.html" class="link">View
+            Project</a>
+        </div>
+        <div class="fullview__item w-clearfix">
           <h2 class="fullview__item-title">SeriesFlix</h2><a href="seriesflix.html" class="link">View Project</a>
         </div>
-
         <div class="fullview__item w-clearfix">
           <h2 class="fullview__item-title">NutriSight</h2><a href="nutrisight.html" class="link">View Project</a>
         </div>
@@ -1322,13 +1339,58 @@
 
   <script>
     $('a.link, a.grid-item, a.nav-link, a.titel').click(function (e) {
-      e.preventDefault();                   // prevent default anchor behavior
       var goTo = this.getAttribute("href"); // store anchor href
+      if (goTo) {
+        var targetHash = null;
+
+        if (goTo.charAt(0) === "#" && goTo.length > 1) {
+          targetHash = goTo;
+        } else {
+          try {
+            var parsedUrl = new URL(goTo, window.location.href);
+            if (parsedUrl.hash && parsedUrl.pathname === window.location.pathname) {
+              targetHash = parsedUrl.hash;
+            }
+          } catch (err) {}
+        }
+
+        if (targetHash) {
+          var target = document.querySelector(targetHash);
+          if (target) {
+            e.preventDefault();
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState(null, "", targetHash);
+            }
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+          }
+        }
+      }
+      e.preventDefault();                   // prevent default anchor behavior
 
       setTimeout(function () {
         window.location = goTo;
       }, 2000);
     });  
+  </script>
+
+  <script>
+    (function () {
+      var initialHash = window.location.hash;
+      if (!initialHash || initialHash.length <= 1) return;
+
+      var target = document.querySelector(initialHash);
+      if (!target) return;
+
+      // Prevent loading directly at the anchor before intro/interactions initialize.
+      window.scrollTo(0, 0);
+
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 350);
+      });
+    })();
   </script>
 
 

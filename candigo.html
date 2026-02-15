@@ -331,7 +331,7 @@
                     data-w-id="6bf9d94f-7e79-04ef-199e-6df6a6c5afe4" class="overflow _2">About</strong></span></a></div>
           </div>
           <div class="link-wrapper _3">
-            <div class="in-link-wrap"><a href="#contact" class="nav-link _3"><span class="hidden"><strong
+            <div class="in-link-wrap"><a href="index.html#contact" class="nav-link _3"><span class="hidden"><strong
                     data-w-id="6bf9d94f-7e79-04ef-199e-6df6a6c5afea" class="overflow _3">Contact</strong></span></a>
             </div>
           </div>
@@ -419,12 +419,12 @@
         <div class="btm-line"></div>
       </div>
       <div id="itemsWrapper" class="grid next-grid-wrapper">
-        <a id="next-grid-item" href="seriesflix.html" class="grid-item next-grid-item w-inline-block"
-          aria-label="Next project: SeriesFlix">
-          <div id="next-thumb" class="thumb-img__small"><img class="grid__item-img" src="images/seriesflix-thumb-small.jpg"
-              alt="SeriesFlix"></div>
+        <a id="next-grid-item" href="yelp-analytics.html" class="grid-item next-grid-item w-inline-block"
+          aria-label="Next project: Yelp Analytics">
+          <div id="next-thumb" class="thumb-img__small"><img class="grid__item-img" src="images/yelp-hero.png"
+              alt="Yelp Analytics"></div>
           <div class="thumb-img__large"><img class="grid__item-img grid__item-img--large"
-              src="images/seriesflix-thumb-large.jpg" alt=""></div>
+              src="images/yelp-hero.png" alt=""></div>
         </a>
       </div>
       <main class="main-copy" style="position: relative; z-index: 1;">
@@ -478,7 +478,7 @@
           document.querySelector('.page-wrapper').style.opacity = '0';
           document.querySelector('.page-wrapper').style.transition = 'opacity 0.6s ease';
           setTimeout(function () {
-            window.location.href = 'seriesflix.html';
+            window.location.href = 'yelp-analytics.html';
           }, 600);
         });
       })();
@@ -561,8 +561,34 @@
 
   <script>
     $('a.link, a.grid-item, a.nav-link, a.titel').click(function (e) {
-      e.preventDefault();                   // prevent default anchor behavior
       var goTo = this.getAttribute("href"); // store anchor href
+      if (goTo) {
+        var targetHash = null;
+
+        if (goTo.charAt(0) === "#" && goTo.length > 1) {
+          targetHash = goTo;
+        } else {
+          try {
+            var parsedUrl = new URL(goTo, window.location.href);
+            if (parsedUrl.hash && parsedUrl.pathname === window.location.pathname) {
+              targetHash = parsedUrl.hash;
+            }
+          } catch (err) {}
+        }
+
+        if (targetHash) {
+          var target = document.querySelector(targetHash);
+          if (target) {
+            e.preventDefault();
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState(null, "", targetHash);
+            }
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+          }
+        }
+      }
+      e.preventDefault();                   // prevent default anchor behavior
 
       setTimeout(function () {
         window.location = goTo;
