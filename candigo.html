@@ -183,6 +183,45 @@
     .fade-up4 {
       pointer-events: none;
     }
+
+    .next-grid-wrapper {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .next-grid-item {
+      position: absolute;
+      inset: 0;
+      display: block;
+      pointer-events: none;
+    }
+
+    .next-grid-item .thumb-img__small {
+      position: absolute;
+      width: 50vw;
+      max-width: 800px;
+      height: auto;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 4px;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+    }
+
+    .next-grid-item .thumb-img__large {
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .next-grid-item .grid__item-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
@@ -269,6 +308,7 @@
     </script>
   </div>
   <div class="page-wrapper">
+    <div id="app" class="app"></div>
     <div class="navigation">
       <div class="menu-wrapper"><a href="#" class="menu-button white w-inline-block">
           <div class="line-bot white"></div>
@@ -287,11 +327,11 @@
                     data-w-id="6bf9d94f-7e79-04ef-199e-6df6a6c5afde" class="overflow _1">Work</strong></span></a></div>
           </div>
           <div class="link-wrapper _2">
-            <div class="in-link-wrap"><a href="#" class="nav-link _2"><span class="hidden"><strong
+            <div class="in-link-wrap"><a href="about.html" class="nav-link _2"><span class="hidden"><strong
                     data-w-id="6bf9d94f-7e79-04ef-199e-6df6a6c5afe4" class="overflow _2">About</strong></span></a></div>
           </div>
           <div class="link-wrapper _3">
-            <div class="in-link-wrap"><a href="#" class="nav-link _3"><span class="hidden"><strong
+            <div class="in-link-wrap"><a href="#contact" class="nav-link _3"><span class="hidden"><strong
                     data-w-id="6bf9d94f-7e79-04ef-199e-6df6a6c5afea" class="overflow _3">Contact</strong></span></a>
             </div>
           </div>
@@ -378,9 +418,15 @@
       <div class="list-wrapper next-project">
         <div class="btm-line"></div>
       </div>
-      <!-- Thumbnail that follows cursor -->
-      <img id="next-thumb" src="images/seriesflix-thumb-large.jpg" alt="SeriesFlix"
-        style="position: absolute; width: 50vw; max-width: 800px; height: auto; pointer-events: none; opacity: 0; z-index: 0; transition: opacity 0.3s ease; border-radius: 4px; transform: translate(-50%, -50%);">
+      <div id="itemsWrapper" class="grid next-grid-wrapper">
+        <a id="next-grid-item" href="seriesflix.html" class="grid-item next-grid-item w-inline-block"
+          aria-label="Next project: SeriesFlix">
+          <div id="next-thumb" class="thumb-img__small"><img class="grid__item-img" src="images/seriesflix-thumb-small.jpg"
+              alt="SeriesFlix"></div>
+          <div class="thumb-img__large"><img class="grid__item-img grid__item-img--large"
+              src="images/seriesflix-thumb-large.jpg" alt=""></div>
+        </a>
+      </div>
       <main class="main-copy" style="position: relative; z-index: 1;">
         <h2 id="heading-container4" class="fade-up4 tricks" style="position: relative; z-index: 2;">next<br></h2>
       </main>
@@ -391,6 +437,7 @@
         var nextSection = document.getElementById('next-section');
         var nextThumb = document.getElementById('next-thumb');
         var customCursor = document.querySelector('.cursor');
+        if (!nextSection || !nextThumb) return;
 
         nextSection.addEventListener('mousemove', function (e) {
           var rect = nextSection.getBoundingClientRect();
@@ -424,6 +471,10 @@
 
         nextSection.addEventListener('click', function (e) {
           e.preventDefault();
+          if (typeof window.__playNextLiquidTransition === 'function') {
+            window.__playNextLiquidTransition(e);
+            return;
+          }
           document.querySelector('.page-wrapper').style.opacity = '0';
           document.querySelector('.page-wrapper').style.transition = 'opacity 0.6s ease';
           setTimeout(function () {
@@ -531,6 +582,10 @@
   </style>
   <script src="vendor/js/anime.min.js"></script>
   <script src="vendor/js/jquery.inview.min.js"></script>
+  <script src="vendor/js/i18n-site.js"></script>
+  <script>
+    window.SiteI18n && window.SiteI18n.apply();
+  </script>
 
   <script>
     var tricksWord = document.getElementsByClassName("tricks");
@@ -601,6 +656,131 @@
         fadeUp4.play();
       }
     });
+  </script>
+
+  <script src="vendor/js/imagesloaded.pkgd.min.js"></script>
+  <script src="vendor/js/three-bundle.js"></script>
+  <script src="vendor/js/demo-core.js"></script>
+  <script src="vendor/js/demo.js"></script>
+  <script>
+    (function () {
+      var nextGridItem = document.getElementById('next-grid-item');
+      var itemsWrapper = document.getElementById('itemsWrapper');
+      var appContainer = document.getElementById('app');
+      if (!nextGridItem || !itemsWrapper || !appContainer) return;
+
+      var fallbackNavigate = function () {
+        window.location.href = nextGridItem.getAttribute('href');
+      };
+
+      if (typeof createDemoEffect !== 'function') {
+        window.__playNextLiquidTransition = fallbackNavigate;
+        return;
+      }
+
+      var thumbs = Array.prototype.slice.call(
+        itemsWrapper.querySelectorAll("img.grid__item-img:not(.grid__item-img--large)")
+      );
+      var transitionDuration = 1.2;
+      var transitionEffect = createDemoEffect({
+        activation: { type: 'mouse' },
+        timing: { duration: transitionDuration },
+        transformation: {
+          type: 'simplex',
+          props: {
+            seed: '8000',
+            frequencyX: 0.2,
+            frequencyY: 0.2,
+            amplitudeX: 0.3,
+            amplitudeY: 0.3
+          }
+        },
+        onToFullscreenStart: function (payload) {
+          var index = payload.index;
+          if (thumbs[index]) {
+            thumbs[index].style.opacity = 0;
+          }
+          transitionEffect.uniforms.uSeed.value = index * 10;
+        },
+        onToGridFinish: function (payload) {
+          var index = payload.lastIndex;
+          if (thumbs[index]) {
+            thumbs[index].style.opacity = 1;
+          }
+        },
+        seed: 800,
+        easings: {
+          toFullscreen: Power1.easeOut,
+          toGrid: Power1.easeInOut
+        }
+      });
+
+      transitionEffect.init();
+
+      var buildTextureSets = function () {
+        var sets = [];
+        var gridItems = Array.prototype.slice.call(itemsWrapper.querySelectorAll('.grid-item'));
+        for (var i = 0; i < gridItems.length; i++) {
+          var item = gridItems[i];
+          var small = item.querySelector("img.grid__item-img:not(.grid__item-img--large)");
+          var large = item.querySelector("img.grid__item-img.grid__item-img--large");
+          if (!small || !small.complete || !small.naturalWidth) {
+            continue;
+          }
+          var largeReady = large && large.complete && large.naturalWidth;
+          sets.push({
+            small: { element: small, image: small },
+            large: { element: largeReady ? large : small, image: largeReady ? large : small }
+          });
+        }
+        return sets;
+      };
+
+      var applyTextures = function () {
+        var textureSets = buildTextureSets();
+        if (textureSets.length) {
+          transitionEffect.createTextures(textureSets);
+        }
+      };
+
+      if (typeof imagesLoaded === 'function') {
+        imagesLoaded(itemsWrapper.querySelectorAll('.grid__item-img'), applyTextures);
+      } else {
+        window.addEventListener('load', applyTextures);
+      }
+
+      var navigating = false;
+      var nextSectionEl = document.getElementById('next-section');
+      var nextHeading = document.getElementById('heading-container4');
+      window.__playNextLiquidTransition = function (event) {
+        if (navigating || transitionEffect.isAnimating) return;
+
+        if (!transitionEffect.textures[0]) {
+          applyTextures();
+        }
+        if (!transitionEffect.textures[0]) {
+          fallbackNavigate();
+          return;
+        }
+
+        navigating = true;
+        if (nextHeading) {
+          nextHeading.style.transition = 'opacity 0.12s ease';
+          nextHeading.style.opacity = '0';
+        }
+        if (nextSectionEl) {
+          nextSectionEl.style.zIndex = '1';
+        }
+
+        var ev = {
+          clientX: event && event.clientX ? event.clientX : window.innerWidth / 2,
+          clientY: event && event.clientY ? event.clientY : window.innerHeight / 2
+        };
+
+        transitionEffect.toFullscreen(0, ev);
+        setTimeout(fallbackNavigate, transitionDuration * 1000);
+      };
+    })();
   </script>
 
 </body>
