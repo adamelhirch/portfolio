@@ -59,23 +59,32 @@
           { selector: ".nav-link._1 .overflow._1", text: "Projets" },
           { selector: ".nav-link._2 .overflow._2", text: "À propos" },
           { selector: ".nav-link._3 .overflow._3", text: "Contact" },
-          { selector: '[data-i18n="hero_data"]', text: "données" },
-          { selector: '[data-i18n="hero_ai"]', text: "ia / ml" },
-          { selector: '[data-i18n="hero_business"]', text: "business" },
-          { selector: '[data-i18n="hero_insights"]', text: "insights" },
           { selector: '[data-i18n="about_greeting"]', text: "Salut, je suis étudiant en BUT Informatique (parcours AGED)." },
           { selector: '[data-i18n="about_passion_1"]', text: "Je développe des projets IA, data et software orientés" },
           { selector: '[data-i18n="about_passion_2"]', text: "architecture, performance et impact concret. <br />", html: true },
           { selector: '[data-i18n="about_specialization"]', text: "En recherche de stage à partir de mars 2026" },
           { selector: '[data-i18n="cat_prog"]', text: "Programmation" },
           { selector: '[data-i18n="cat_ds"]', text: "Data Science & IA" },
+          {
+            selector: '[data-i18n="skill_ds"]',
+            text: "<li>Machine Learning</li><li>Deep Learning</li><li>NLP</li><li>Computer Vision</li><li>Statistiques</li>",
+            html: true
+          },
           { selector: '[data-i18n="cat_de"]', text: "Data Engineering" },
           { selector: '[data-i18n="cat_bi"]', text: "Business Intelligence" },
           { selector: '[data-i18n="cat_soft"]', text: "Compétences comportementales" },
-          { selector: '[data-i18n="skill_soft"]', text: "Résolution de problèmes, Gestion du stress, Adaptabilité, Travail en équipe, Résilience, Esprit critique" },
+          {
+            selector: '[data-i18n="skill_soft"]',
+            text: "<li>Résolution de problèmes</li><li>Gestion du stress</li><li>Adaptabilité</li><li>Travail en équipe</li><li>Résilience</li><li>Esprit critique</li>",
+            html: true
+          },
           { selector: '[data-i18n="cat_pm"]', text: "Gestion de projet" },
           { selector: '[data-i18n="cat_languages"]', text: "Langues" },
-          { selector: '[data-i18n="skill_languages"]', text: "Français, English, Español, العربية" },
+          {
+            selector: '[data-i18n="skill_languages"]',
+            text: "<li>Français</li><li>English</li><li>Español</li><li>العربية</li>",
+            html: true
+          },
           { selector: ".main > .list-wrapper .project-name-wrap .div-4 .span", text: "rôle" },
           { selector: ".main > .list-wrapper .project-name-wrap .div-5 .span", text: "projet" },
           { selector: ".main > .list-wrapper .project-name-wrap .div-6 .span", text: "année" },
@@ -96,23 +105,32 @@
           { selector: ".nav-link._1 .overflow._1", text: "Proyectos" },
           { selector: ".nav-link._2 .overflow._2", text: "Sobre mí" },
           { selector: ".nav-link._3 .overflow._3", text: "Contacto" },
-          { selector: '[data-i18n="hero_data"]', text: "datos" },
-          { selector: '[data-i18n="hero_ai"]', text: "ia / ml" },
-          { selector: '[data-i18n="hero_business"]', text: "negocio" },
-          { selector: '[data-i18n="hero_insights"]', text: "insights" },
           { selector: '[data-i18n="about_greeting"]', text: "Hola, soy estudiante de BUT Informatique (itinerario AGED)." },
           { selector: '[data-i18n="about_passion_1"]', text: "Desarrollo proyectos de IA, datos y software enfocados en" },
           { selector: '[data-i18n="about_passion_2"]', text: "arquitectura, rendimiento e impacto real. <br />", html: true },
           { selector: '[data-i18n="about_specialization"]', text: "Busco prácticas a partir de marzo de 2026" },
           { selector: '[data-i18n="cat_prog"]', text: "Programación" },
           { selector: '[data-i18n="cat_ds"]', text: "Data Science e IA" },
+          {
+            selector: '[data-i18n="skill_ds"]',
+            text: "<li>Machine Learning</li><li>Deep Learning</li><li>NLP</li><li>Computer Vision</li><li>Estadística</li>",
+            html: true
+          },
           { selector: '[data-i18n="cat_de"]', text: "Data Engineering" },
           { selector: '[data-i18n="cat_bi"]', text: "Business Intelligence" },
           { selector: '[data-i18n="cat_soft"]', text: "Habilidades blandas" },
-          { selector: '[data-i18n="skill_soft"]', text: "Resolución de problemas, Gestión del estrés, Adaptabilidad, Trabajo en equipo, Resiliencia, Pensamiento crítico" },
+          {
+            selector: '[data-i18n="skill_soft"]',
+            text: "<li>Resolución de problemas</li><li>Gestión del estrés</li><li>Adaptabilidad</li><li>Trabajo en equipo</li><li>Resiliencia</li><li>Pensamiento crítico</li>",
+            html: true
+          },
           { selector: '[data-i18n="cat_pm"]', text: "Gestión de proyectos" },
           { selector: '[data-i18n="cat_languages"]', text: "Idiomas" },
-          { selector: '[data-i18n="skill_languages"]', text: "Español, Français, English, العربية" },
+          {
+            selector: '[data-i18n="skill_languages"]',
+            text: "<li>Español</li><li>Français</li><li>English</li><li>العربية</li>",
+            html: true
+          },
           { selector: ".main > .list-wrapper .project-name-wrap .div-4 .span", text: "rol" },
           { selector: ".main > .list-wrapper .project-name-wrap .div-5 .span", text: "proyecto" },
           { selector: ".main > .list-wrapper .project-name-wrap .div-6 .span", text: "año" },
@@ -150,15 +168,14 @@
           { selector: "#heading-container2 h4", text: "Le problème" },
           {
             selector: "#heading-container2 + .wrap.project .text-block.project",
-            text: "Les candidats passent plus de 2 heures par candidature à adapter manuellement leur CV et leur lettre de motivation. Les ATS éliminent plus de 75 % des candidatures avant lecture humaine, en rejetant souvent les CV visuels de type Canva."
+            text: "Les candidats peuvent passer jusqu'à 1 heure par candidature à adapter manuellement leur CV et leur lettre de motivation. Les ATS éliminent plus de 75 % des candidatures avant lecture humaine, en rejetant souvent les CV visuels de type Canva."
           },
           { selector: "#heading-container3 h4", text: "La solution" },
           {
             selector: "#heading-container3 + .wrap.project .text-block.project",
-            text: "CandiGO automatise tout le workflow de candidature grâce à une extension navigateur pour importer une offre en un clic. L'IA sélectionne les compétences, expériences et formations pertinentes, puis les aligne avec les mots-clés de l'offre pour générer des CV et lettres de motivation personnalisés, optimisés ATS, en moins de 10 minutes.<br><br><strong>90 % de gain de temps :</strong> de 2 heures à 10 minutes par candidature.",
+            text: "CandiGO automatise tout le workflow de candidature grâce à une extension navigateur pour importer une offre en un clic. L'IA sélectionne les compétences, expériences et formations pertinentes, puis les aligne avec les mots-clés de l'offre pour générer des CV et lettres de motivation personnalisés, optimisés ATS, en moins de 10 minutes.<br><br><strong>Jusqu'à 83 % de gain de temps :</strong> de 1 heure à 10 minutes par candidature.",
             html: true
           },
-          { selector: "#heading-container4", text: "projet suivant" },
           { selector: 'a[href="#top"].bold-text.small', text: "retour en haut" },
           { selector: '#contact a[href^="mailto:"]', text: "e-mail" }
         ]
@@ -187,15 +204,14 @@
           { selector: "#heading-container2 h4", text: "El problema" },
           {
             selector: "#heading-container2 + .wrap.project .text-block.project",
-            text: "Los candidatos dedican más de 2 horas por solicitud para adaptar manualmente CV y carta. Los ATS filtran más del 75 % de las candidaturas antes de revisión humana y suelen descartar CV visuales tipo Canva."
+            text: "Los candidatos pueden dedicar hasta 1 hora por solicitud para adaptar manualmente CV y carta. Los ATS filtran más del 75 % de las candidaturas antes de revisión humana y suelen descartar CV visuales tipo Canva."
           },
           { selector: "#heading-container3 h4", text: "La solución" },
           {
             selector: "#heading-container3 + .wrap.project .text-block.project",
-            text: "CandiGO automatiza todo el flujo de candidatura con una extensión de navegador para importar ofertas en un clic. La IA selecciona competencias, experiencias y formación relevantes, y las alinea con palabras clave de la oferta para generar CV y cartas personalizados, optimizados para ATS, en menos de 10 minutos.<br><br><strong>90 % menos de tiempo:</strong> de 2 horas a 10 minutos por candidatura.",
+            text: "CandiGO automatiza todo el flujo de candidatura con una extensión de navegador para importar ofertas en un clic. La IA selecciona competencias, experiencias y formación relevantes, y las alinea con palabras clave de la oferta para generar CV y cartas personalizados, optimizados para ATS, en menos de 10 minutos.<br><br><strong>Hasta un 83 % menos de tiempo:</strong> de 1 hora a 10 minutos por candidatura.",
             html: true
           },
-          { selector: "#heading-container4", text: "siguiente proyecto" },
           { selector: 'a[href="#top"].bold-text.small', text: "volver arriba" },
           { selector: '#contact a[href^="mailto:"]', text: "correo" }
         ]
@@ -233,7 +249,6 @@
           { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Recommandations IA :</strong> filtrage basé contenu avec TF-IDF et similarité cosinus.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Ingestion des métadonnées :</strong> pipeline automatisé avec Mistral AI pour l'identification des séries.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Dashboard admin :</strong> gestion CRUD complète et traitement des uploads de sous-titres.", html: true },
-          { selector: "#heading-container4", text: "projet suivant" },
           { selector: 'a[href="#top"].bold-text.small', text: "retour en haut" },
           { selector: '#contact a[href^="mailto:"]', text: "e-mail" }
         ]
@@ -269,7 +284,6 @@
           { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Recomendaciones IA:</strong> filtrado basado en contenido con TF-IDF y similitud coseno.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Ingesta de metadatos:</strong> pipeline automatizado con Mistral AI para identificar series.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Panel admin:</strong> gestión CRUD completa y procesamiento de subida de subtítulos.", html: true },
-          { selector: "#heading-container4", text: "siguiente proyecto" },
           { selector: 'a[href="#top"].bold-text.small', text: "volver arriba" },
           { selector: '#contact a[href^="mailto:"]', text: "correo" }
         ]
@@ -322,7 +336,6 @@
             text: "- Traitement et nettoyage de milliers de produits Open Food Facts<br />- Construction d'un pipeline ETL KNIME complet pour normalisation et assurance qualité<br />- Conception de 2 dashboards Power BI interactifs avec drill-down et filtres dynamiques<br />- Implémentation du calcul et de la visualisation du Nutri-score via jauges intuitives<br />- Analyse des tendances de vente sur 5 pays et plus de 11 catégories alimentaires<br />- Création d'un explorateur produit avec analyse nutritionnelle en temps réel",
             html: true
           },
-          { selector: "#heading-container4", text: "projet suivant" },
           { selector: 'a[href="#top"].bold-text.small', text: "retour en haut" },
           { selector: '#contact a[href^="mailto:"]', text: "e-mail" }
         ]
@@ -373,7 +386,6 @@
             text: "- Procesamiento y limpieza de miles de productos de Open Food Facts<br />- Construcción de un pipeline ETL completo en KNIME para normalización y control de calidad<br />- Diseño de 2 dashboards interactivos en Power BI con drill-down y filtros dinámicos<br />- Implementación del cálculo y visualización de Nutri-score con medidores intuitivos<br />- Análisis de patrones de venta en 5 países y más de 11 categorías alimentarias<br />- Creación de un explorador de productos con desglose nutricional en tiempo real",
             html: true
           },
-          { selector: "#heading-container4", text: "siguiente proyecto" },
           { selector: 'a[href="#top"].bold-text.small', text: "volver arriba" },
           { selector: '#contact a[href^="mailto:"]', text: "correo" }
         ]
@@ -410,7 +422,6 @@
           { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Dynamique des avis :</strong> relation observable entre longueur des avis et nombre d'étoiles.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Répartition satisfaction :</strong> distribution des sentiments dérivée des classes d'étoiles.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Stack réutilisable :</strong> insights notebook consolidés dans des modules Python réutilisables.", html: true },
-          { selector: "#heading-container4", text: "projet suivant" },
           { selector: 'a[href="#top"].bold-text.small', text: "retour en haut" },
           { selector: '#contact a[href^="mailto:"]', text: "e-mail" }
         ]
@@ -445,7 +456,6 @@
           { selector: "#heading-container5 + .wrap.project li:nth-child(2)", text: "<strong>Dinámica de reseñas:</strong> relación observable entre longitud de reseña y puntuación en estrellas.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(3)", text: "<strong>Distribución de satisfacción:</strong> reparto de sentimiento derivado de clases de estrellas.", html: true },
           { selector: "#heading-container5 + .wrap.project li:nth-child(4)", text: "<strong>Stack reutilizable:</strong> insights de notebooks consolidados en módulos Python reutilizables.", html: true },
-          { selector: "#heading-container4", text: "siguiente proyecto" },
           { selector: 'a[href="#top"].bold-text.small', text: "volver arriba" },
           { selector: '#contact a[href^="mailto:"]', text: "correo" }
         ]

@@ -3278,6 +3278,43 @@ strong {
   width: 60%;
 }
 
+.skills-contact-wrapper .skills-detail-list {
+  margin: 0;
+  padding-left: 0;
+  line-height: 1.06em;
+  list-style: none;
+}
+
+.skills-contact-wrapper .contact-wrap {
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.skills-contact-wrapper .skills-detail-list li {
+  margin-bottom: .12em;
+}
+
+.skills-contact-wrapper .skills-detail-list li:last-child {
+  margin-bottom: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skills-contact-wrapper .skills-detail-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: max-height .72s ease, opacity .46s ease, transform .62s ease;
+  }
+
+  .skills-contact-wrapper .contact-wrap:hover .skills-detail-list,
+  .skills-contact-wrapper .contact-wrap:focus-within .skills-detail-list {
+    max-height: 32rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .section {
   justify-content: flex-end;
   align-items: flex-start;
